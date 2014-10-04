@@ -7,26 +7,24 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="480" height="480"/>
+            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6gL-Ky-JzY">
-                    <rect key="frame" x="0.0" y="360" width="480" height="120"/>
-                    <color key="backgroundColor" red="0.87450980392156863" green="0.81176470588235294" blue="0.91764705882352937" alpha="1" colorSpace="calibratedRGB"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="120" id="0Va-3H-f2h"/>
-                    </constraints>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2zk-QR-ctI">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                    <color key="backgroundColor" red="0.8980392157" green="0.87058823529999996" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
                 </view>
             </subviews>
             <color key="backgroundColor" red="0.89803921568627454" green="0.87058823529411766" blue="0.97647058823529409" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="6gL-Ky-JzY" secondAttribute="bottom" id="Wks-xa-q5y"/>
-                <constraint firstItem="6gL-Ky-JzY" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Yok-8e-RCV"/>
-                <constraint firstAttribute="trailing" secondItem="6gL-Ky-JzY" secondAttribute="trailing" id="rpd-08-jrk"/>
+                <constraint firstItem="2zk-QR-ctI" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="4TB-dZ-xiT"/>
+                <constraint firstAttribute="bottom" secondItem="2zk-QR-ctI" secondAttribute="bottom" id="VRa-V6-lkq"/>
+                <constraint firstAttribute="trailing" secondItem="2zk-QR-ctI" secondAttribute="trailing" id="d7b-9s-7RM"/>
+                <constraint firstItem="2zk-QR-ctI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="w96-C2-6kS"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="548" y="455"/>
+            <point key="canvasLocation" x="608" y="515"/>
         </view>
     </objects>
 </document>
