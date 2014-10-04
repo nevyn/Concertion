@@ -86,8 +86,10 @@ class SverigesRadio {
         }
     }
     
-    func channels() -> Fetch<Array<Channel>> {
-        return Fetch(ChannelsURL) { (data: NSDictType) -> (Array<Channel>) in
+    typealias ChannelList = Array<Channel>
+    
+    func channels() -> Fetch<ChannelList> {
+        return Fetch(ChannelsURL) { (data: NSDictType) -> (ChannelList) in
             let channelsDict = data["channels"] as NSDictionary
             
             let channelsInfos = (channelsDict["channel"] as NSArray) as Array<NSDictType>

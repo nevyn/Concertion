@@ -8,12 +8,18 @@
 
 import UIKit
 
-
 class RootSourcesCollectionViewController: UICollectionViewController {
+    
+    var stations :SverigesRadio.ChannelList? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.clearsSelectionOnViewWillAppear = false
+        
+        SverigesRadio().channels().onComplete { (value) -> () in
+            self.stations = value;
+            self.collectionView?.reloadData()
+        }
     }
 
     /*
@@ -28,13 +34,17 @@ class RootSourcesCollectionViewController: UICollectionViewController {
 	
 	// MARK: Data
 	
-	func contentForSection(section: Int) -> [AnyObject]
+	func contentForSection(section: Int) -> [String]
 	{
-		return [
-			[1, 2, 3],
-			["http://sverigesradio.se/topsy/direkt/163.mp3", "http://sverigesradio.se/topsy/direkt/210.mp3", 3, 4, 5],
-			["http://sverigesradio.se/topsy/ljudfil/4119397.mp3", 2, 3, 4]
-		][section];
+        let tracks: Array<String> = (self.stations != nil) ? self.stations!.map({ (channel) -> String in
+             return channel.liveAudioFileURL.absoluteString!
+        }) : ["Empty"]
+
+        return [
+			["One", "Two", "Three"],
+            tracks,
+			["http://sverigesradio.se/topsy/ljudfil/4119397.mp3", "One", "Two", "Three"]
+		][section]
 	}
 	
 
