@@ -88,7 +88,7 @@ public class PlaybackController: NSObject {
 	}
 	
 	public func joinConcertion(concertion: Concertion) {
-		self.currentConcertion.changedRemotelyListener = nil
+		self.currentConcertion?.changedRemotelyListener = nil
 		self.currentConcertion = concertion
 		self.currentConcertion.changedRemotelyListener = {
 			[unowned self]
