@@ -212,14 +212,12 @@
 				994EEEF919E0A0080032056B /* Mumble */,
 				998D7E5519E01E1A00B12C6C /* XMLDocument */,
 				998D7E5D19E01E1F00B12C6C /* ContentProviders */,
-				053B4D8419DFE2A600C5B38A /* AppDelegate.swift */,
-				053B4DA819DFFD4200C5B38A /* PlaybackController.swift */,
+				058FD78D19E0BBD3000A321A /* Managers */,
 				053B4DA619DFF2CD00C5B38A /* ConcertionsCollectionViewController.swift */,
 				05FE932419E0B28000C06D9D /* ConcertionRootViewController.swift */,
 				053B4DAB19E0092100C5B38A /* FBKVOController.h */,
 				053B4DAC19E0092100C5B38A /* FBKVOController.m */,
 				053B4D8A19DFE2A600C5B38A /* Main.storyboard */,
-				0558E40719E07170004A6178 /* ConcertionService.swift */,
 				057C32C619E022B400B19773 /* SRChannelsCollectionViewController.swift */,
 				057C32CC19E022C800B19773 /* SRShowsInChannelCollectionViewController.swift */,
 				057C32CE19E022DC00B19773 /* SREpisodesInShowCollectionViewController.swift */,
@@ -290,6 +288,16 @@
 				0558E40219E06F2C004A6178 /* libPods-SocketRocket.a */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		058FD78D19E0BBD3000A321A /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				053B4D8419DFE2A600C5B38A /* AppDelegate.swift */,
+				053B4DA819DFFD4200C5B38A /* PlaybackController.swift */,
+				0558E40719E07170004A6178 /* ConcertionService.swift */,
+			);
+			name = Managers;
 			sourceTree = "<group>";
 		};
 		994EEEDE19E09ED40032056B /* Products */ = {

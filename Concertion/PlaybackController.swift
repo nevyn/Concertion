@@ -24,7 +24,7 @@ public func ==(lhs: Track, rhs: Track) -> Bool {
 
 
 public class Concertion: NSObject, Equatable {
-	public var name = RandomConcertionName()
+	public var name : String? = RandomConcertionName()
 	public internal(set) var identifier: String?
 	public internal(set) var currentTrack: Track?
 	public internal(set) var playing: Bool? = false
@@ -70,11 +70,17 @@ public class PlaybackController: NSObject {
 	}
 	
 	
-	public private(set) var currentConcertion : Concertion = Concertion()
+	public private(set) var currentConcertion : Concertion!
 	
 	
 	public func play(track: Track) {
 		player.play(track.streamingURL.absoluteString)
+		
+		if currentConcertion == nil {
+			currentConcertion = Concertion()
+			ConcertionService.sharedInstance().publishNewConcertion(currentConcertion)
+		}
+		
 		self.currentConcertion.currentTrack = track
 		self.currentConcertion.playing = true
 		self.currentConcertion.time = Concertion.PlaybackTime(setAt:NSDate().timeIntervalSince1970, offset:0)

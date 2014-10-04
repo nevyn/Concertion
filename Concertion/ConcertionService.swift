@@ -13,6 +13,11 @@ public class ConcertionService: NSObject {
 	var ddp : ObjectiveDDP
 	var concertions : [Concertion] = []
 	
+	public class func sharedInstance() -> ConcertionService
+	{
+		return _concertionServiceSingleton!
+	}
+	
 	public override init() {
 		self.meteor = MeteorClient(DDPVersion:"pre2")
 		meteor.addSubscription("concertions")
@@ -22,6 +27,7 @@ public class ConcertionService: NSObject {
 
 		
 		super.init()
+		_concertionServiceSingleton = self
 		NSNotificationCenter.defaultCenter().addObserver(self, selector:"connected", name:MeteorClientDidConnectNotification, object:nil)
 		NSNotificationCenter.defaultCenter().addObserver(self, selector:"disconnected", name:MeteorClientDidDisconnectNotification, object:nil)
 		
@@ -68,19 +74,22 @@ public class ConcertionService: NSObject {
 				}
 			}
 			
-			if
-				setIfChanged(&concertion.identifier, desc["_id"] as? String) ||
-				setIfChanged(&concertion.currentTrack, Track(
-					title: desc["title"] as String,
-					artistName: desc["artistName"] as String,
-					imageURL: NSURL(string:desc["imageURL"] as String),
-					streamingURL: NSURL(string:desc["streamingURL"] as String)!
-				)) ||
-				setIfChanged(&concertion.playing, desc["playing"] as? Bool) ||
-				setIfChanged(&concertion.time, Concertion.PlaybackTime(
-					setAt: desc["setAt"] as NSTimeInterval,
-					offset: desc["offset"] as NSTimeInterval
-				))
+			var track : NSDictionary! = desc["currentTrack"] as? NSDictionary
+			var time : NSDictionary! = desc["time"] as? NSDictionary
+			if [
+				setIfChanged(&concertion.identifier, desc["_id"] as? String),
+				setIfChanged(&concertion.name, desc["name"] as? String),
+				setIfChanged(&concertion.currentTrack, track == nil ?  nil : Track(
+					title: track["title"] as String,
+					artistName: track["artistName"] as String,
+					imageURL: NSURL(string:track["imageURL"] as String),
+					streamingURL: NSURL(string:track["streamingURL"] as String)
+				)),
+				setIfChanged(&concertion.playing, desc["playing"] as? Bool),
+				setIfChanged(&concertion.time, time == nil ? nil : Concertion.PlaybackTime(
+					setAt: time["setAt"] as NSTimeInterval,
+					offset: time["offset"] as NSTimeInterval
+				))].reduce(true, { $0 && $1 })
 			{
 				concertion.changedRemotelyListener?()
 			}
@@ -90,6 +99,11 @@ public class ConcertionService: NSObject {
 		concertions = newConcertions
 	}
 	
+	func publishNewConcertion(concertion: Concertion) {
+		concertions.append(concertion)
+		// do insertion
+	}
+	
 	func pushConcertionChanges(concertion: Concertion) {
 	
 	}
@@ -97,7 +111,7 @@ public class ConcertionService: NSObject {
 
 func setIfChanged<T: Equatable>(inout a: T?, b: T?) -> Bool
 {
-	if a != b {
+	if a? != b? {
 		a = b
 		return true
 	} else {

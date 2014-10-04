@@ -9,8 +9,6 @@
 import UIKit
 
 class ConcertionsCollectionViewController: UICollectionViewController {
-    
-    var stations :SverigesRadio.ChannelList? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,46 +24,38 @@ class ConcertionsCollectionViewController: UICollectionViewController {
     }
 	
 	// MARK: Data
-    
-    func sections() -> [[Track]] {
-        return [
-			[Track(title: "asdf", artistName: "asdf", imageURL: nil, streamingURL: NSURL(string:"asdf")), Track(title: "asdf", artistName: "asdf", imageURL: nil, streamingURL: NSURL(string:"asdf"))],
-		]
-    }
 	
-	func contentForSection(section: Int) -> [Track]
-	{
-        return self.sections()[section]
-	}
-	
+	lazy var service: ConcertionService = ConcertionService.sharedInstance()
+	lazy var playback: PlaybackController = PlaybackController.sharedInstance()
 
     // MARK: UICollectionViewDataSource
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        //#warning Incomplete method implementation -- Return the number of sections
-        return self.sections().count
+        return 1
     }
 
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        //#warning Incomplete method implementation -- Return the number of items in the section
-        return contentForSection(section).count
+        return self.service.concertions.count
     }
 
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-		let content = contentForSection(indexPath.section)
+    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell
+	{
+		let concertion = self.service.concertions[indexPath.row]
+
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("FriendCell", forIndexPath: indexPath) as UICollectionViewCell
-    
-        // Configure the cell
-    
+		let image = cell.viewWithTag(1) as UIImageView
+		let label = cell.viewWithTag(2) as UILabel
+		
+		label.text = concertion.name
+		
         return cell
     }
 	
 	override  func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
 	{
-		let content = contentForSection(indexPath.section)
-        
-        let track = content[indexPath.row]
+		let concertion = self.service.concertions[indexPath.row]
+		self.playback.joinConcertion(concertion)
 	}
 
     // MARK: UICollectionViewDelegate

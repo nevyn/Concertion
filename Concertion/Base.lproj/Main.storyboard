@@ -149,7 +149,7 @@
         <!--Friends-->
         <scene sceneID="zXV-kh-5gU">
             <objects>
-                <collectionViewController id="oUt-BL-wFb" customClass="RootSourcesCollectionViewController" customModule="Concertion" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="oUt-BL-wFb" customClass="ConcertionsCollectionViewController" customModule="Concertion" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="M3D-A2-lH3">
                         <rect key="frame" x="0.0" y="44" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -169,12 +169,12 @@
                                     <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b2R-fb-SCq">
-                                            <rect key="frame" x="29" y="72" width="42" height="21"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" misplaced="YES" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b2R-fb-SCq">
+                                            <rect key="frame" x="0.0" y="63" width="100" height="37"/>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="20.5" id="v7L-o3-mzM"/>
+                                                <constraint firstAttribute="height" constant="37" id="v7L-o3-mzM"/>
                                             </constraints>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -192,8 +192,8 @@
                                 <constraints>
                                     <constraint firstAttribute="centerX" secondItem="b2R-fb-SCq" secondAttribute="centerX" id="1iP-1k-8sc"/>
                                     <constraint firstAttribute="centerX" secondItem="vuX-IQ-3Uz" secondAttribute="centerX" id="PUm-M8-sYi"/>
-                                    <constraint firstItem="b2R-fb-SCq" firstAttribute="top" secondItem="vuX-IQ-3Uz" secondAttribute="bottom" constant="8" id="RTx-CY-qvr"/>
-                                    <constraint firstAttribute="bottomMargin" secondItem="b2R-fb-SCq" secondAttribute="bottom" constant="-1" id="XPs-pA-Zn0"/>
+                                    <constraint firstItem="b2R-fb-SCq" firstAttribute="top" secondItem="vuX-IQ-3Uz" secondAttribute="bottom" constant="-1" id="RTx-CY-qvr"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="b2R-fb-SCq" secondAttribute="bottom" constant="-8" id="XPs-pA-Zn0"/>
                                 </constraints>
                                 <size key="customSize" width="100" height="100"/>
                             </collectionViewCell>
@@ -295,7 +295,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="100" height="126"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dummy1" translatesAutoresizingMaskIntoConstraints="NO" id="57K-9v-r4R">
+                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="dummy1" translatesAutoresizingMaskIntoConstraints="NO" id="57K-9v-r4R">
                                             <rect key="frame" x="10" y="10" width="80" height="81"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -359,7 +359,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="100" height="126"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dummy1" translatesAutoresizingMaskIntoConstraints="NO" id="V2k-bl-Kjk">
+                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="dummy1" translatesAutoresizingMaskIntoConstraints="NO" id="V2k-bl-Kjk">
                                             <rect key="frame" x="10" y="10" width="80" height="81"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
