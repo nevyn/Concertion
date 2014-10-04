@@ -19,6 +19,7 @@
 		053B4DC019E019A700C5B38A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 053B4DBF19E019A700C5B38A /* SystemConfiguration.framework */; };
 		0558E40319E06F37004A6178 /* libObjectiveDDP.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 0558E3F719E06F2C004A6178 /* libObjectiveDDP.a */; };
 		0558E40619E06F5E004A6178 /* libicucore.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 0558E40519E06F5E004A6178 /* libicucore.dylib */; };
+		0558E40819E07170004A6178 /* ConcertionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0558E40719E07170004A6178 /* ConcertionService.swift */; };
 		057C32C719E022B400B19773 /* SRChannelsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057C32C619E022B400B19773 /* SRChannelsCollectionViewController.swift */; };
 		057C32CD19E022C800B19773 /* SRShowsInChannelCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057C32CC19E022C800B19773 /* SRShowsInChannelCollectionViewController.swift */; };
 		057C32CF19E022DC00B19773 /* SREpisodesInShowCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057C32CE19E022DC00B19773 /* SREpisodesInShowCollectionViewController.swift */; };
@@ -121,6 +122,7 @@
 		0558E3EE19E06F2C004A6178 /* ObjectiveDDP.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ObjectiveDDP.xcodeproj; path = Vendor/ObjectiveDDP/ObjectiveDDP.xcodeproj; sourceTree = SOURCE_ROOT; };
 		0558E3F119E06F2C004A6178 /* Pods.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Pods.xcodeproj; path = Vendor/ObjectiveDDP/Pods/Pods.xcodeproj; sourceTree = SOURCE_ROOT; };
 		0558E40519E06F5E004A6178 /* libicucore.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libicucore.dylib; path = usr/lib/libicucore.dylib; sourceTree = SDKROOT; };
+		0558E40719E07170004A6178 /* ConcertionService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcertionService.swift; sourceTree = "<group>"; };
 		057C32C619E022B400B19773 /* SRChannelsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRChannelsCollectionViewController.swift; sourceTree = "<group>"; };
 		057C32CC19E022C800B19773 /* SRShowsInChannelCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRShowsInChannelCollectionViewController.swift; sourceTree = "<group>"; };
 		057C32CE19E022DC00B19773 /* SREpisodesInShowCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SREpisodesInShowCollectionViewController.swift; sourceTree = "<group>"; };
@@ -184,6 +186,7 @@
 				053B4DAC19E0092100C5B38A /* FBKVOController.m */,
 				053B4D8A19DFE2A600C5B38A /* Main.storyboard */,
 				057C32C619E022B400B19773 /* SRChannelsCollectionViewController.swift */,
+				0558E40719E07170004A6178 /* ConcertionService.swift */,
 				057C32CC19E022C800B19773 /* SRShowsInChannelCollectionViewController.swift */,
 				057C32CE19E022DC00B19773 /* SREpisodesInShowCollectionViewController.swift */,
 				053B4D8D19DFE2A600C5B38A /* Images.xcassets */,
@@ -471,6 +474,7 @@
 				057C32CF19E022DC00B19773 /* SREpisodesInShowCollectionViewController.swift in Sources */,
 				053B4DA719DFF2CD00C5B38A /* RootSourcesCollectionViewController.swift in Sources */,
 				057C32C719E022B400B19773 /* SRChannelsCollectionViewController.swift in Sources */,
+				0558E40819E07170004A6178 /* ConcertionService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -598,6 +602,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				HEADER_SEARCH_PATHS = (
 					Vendor/StreamingKit/StreamingKit,
+					Vendor/ObjectiveDDP/Pods/Headers,
+					Vendor/ObjectiveDDP,
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Concertion/Info.plist;
@@ -617,6 +623,8 @@
 				CLANG_ENABLE_MODULES = YES;
 				HEADER_SEARCH_PATHS = (
 					Vendor/StreamingKit/StreamingKit,
+					Vendor/ObjectiveDDP/Pods/Headers,
+					Vendor/ObjectiveDDP,
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = Concertion/Info.plist;

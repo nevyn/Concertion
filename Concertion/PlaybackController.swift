@@ -68,11 +68,7 @@ public class PlaybackController: NSObject {
 	}
 	
 	
-	public var currentConcertion : Concertion = Concertion() {
-		didSet {
-			
-		}
-	}
+	public private(set) var currentConcertion : Concertion = Concertion()
 	
 	
 	public func play(track: Track) {
