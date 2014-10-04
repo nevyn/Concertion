@@ -10,12 +10,17 @@ import UIKit
 
 class SRChannelsCollectionViewController: UICollectionViewController {
 
+    var stations :SverigesRadio.ChannelList? = nil
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
         self.clearsSelectionOnViewWillAppear = false
+        
+        SverigesRadio().channels().onComplete { (value) -> () in
+            self.stations = value;
+            self.collectionView?.reloadData()
+        }
     }
-
 
     /*
     // MARK: - Navigation
@@ -37,13 +42,21 @@ class SRChannelsCollectionViewController: UICollectionViewController {
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //#warning Incomplete method implementation -- Return the number of items in the section
-        return 1
+        return self.stations != nil ? self.stations!.count : 0
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as UICollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ChannelCell", forIndexPath: indexPath) as UICollectionViewCell
+        
+        
+        let channel = self.stations![indexPath.row]
     
         // Configure the cell
+        let imageView = cell.viewWithTag(1) as UIImageView
+        let label = cell.viewWithTag(2) as UILabel
+        
+        imageView.image = UIImage(data: NSData(contentsOfURL: channel.imageURL)!)
+        label.text = channel.name
     
         return cell
     }

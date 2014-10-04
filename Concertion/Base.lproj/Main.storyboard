@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6249" systemVersion="14A379a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2kx-US-Wc9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6249" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2kx-US-Wc9">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6243"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -91,7 +91,7 @@
                                     <constraint firstAttribute="width" constant="46" id="nR4-q8-o2H"/>
                                     <constraint firstAttribute="height" constant="40" id="o6Q-SL-L62"/>
                                 </constraints>
-                                <state key="normal" title="&gt;">
+                                <state key="normal" title=">">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -154,10 +154,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="100" height="126"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="dummy1" translatesAutoresizingMaskIntoConstraints="NO" id="vuX-IQ-3Uz">
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="dummy1" translatesAutoresizingMaskIntoConstraints="NO" id="vuX-IQ-3Uz">
                                             <rect key="frame" x="10" y="10" width="80" height="80"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -165,10 +165,21 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" ambiguous="YES" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b2R-fb-SCq">
+                                            <rect key="frame" x="29" y="98" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
-                                <size key="customSize" width="100" height="100"/>
+                                <constraints>
+                                    <constraint firstAttribute="centerY" secondItem="b2R-fb-SCq" secondAttribute="centerY" constant="-45.5" id="9pd-Fs-xDT"/>
+                                    <constraint firstItem="b2R-fb-SCq" firstAttribute="top" secondItem="vuX-IQ-3Uz" secondAttribute="bottom" constant="8" id="RTx-CY-qvr"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="b2R-fb-SCq" secondAttribute="bottom" constant="-1" id="XPs-pA-Zn0"/>
+                                </constraints>
+                                <size key="customSize" width="100" height="126"/>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MoreCell" id="YHs-a6-u9E">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
@@ -246,15 +257,23 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="GII-1S-V8d">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="ChannelCell" id="e5x-eF-LU3">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="116" height="116"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="100" height="126"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Channel name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dE1-tt-wwQ">
-                                            <rect key="frame" x="3" y="47" width="111" height="21"/>
+                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="dummy1" translatesAutoresizingMaskIntoConstraints="NO" id="zjJ-Id-YtX">
+                                            <rect key="frame" x="10" y="10" width="80" height="80"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="40"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Exu-65-bir">
+                                            <rect key="frame" x="29" y="98" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -262,8 +281,18 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <constraints>
+                                    <constraint firstAttribute="centerX" secondItem="Exu-65-bir" secondAttribute="centerX" id="Lui-kd-A83"/>
+                                    <constraint firstItem="Exu-65-bir" firstAttribute="top" secondItem="zjJ-Id-YtX" secondAttribute="bottom" constant="8" id="M6G-Ai-yIH"/>
+                                    <constraint firstItem="zjJ-Id-YtX" firstAttribute="top" secondItem="e5x-eF-LU3" secondAttribute="topMargin" constant="2" id="UCo-qE-DY2"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="zjJ-Id-YtX" secondAttribute="trailing" constant="2" id="gOY-UJ-dp7"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="Exu-65-bir" secondAttribute="bottom" constant="-1" id="tPd-JC-QLe"/>
+                                    <constraint firstItem="zjJ-Id-YtX" firstAttribute="leading" secondItem="e5x-eF-LU3" secondAttribute="leadingMargin" constant="2" id="toZ-p9-srI"/>
+                                    <constraint firstAttribute="centerX" secondItem="zjJ-Id-YtX" secondAttribute="centerX" id="zX8-lL-Ddi"/>
+                                </constraints>
+                                <size key="customSize" width="100" height="126"/>
                                 <connections>
-                                    <segue destination="wlf-UU-dHa" kind="show" id="dhA-E9-AC3"/>
+                                    <segue destination="wlf-UU-dHa" kind="show" id="Yh0-sZ-Dq2"/>
                                 </connections>
                             </collectionViewCell>
                         </cells>
