@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6249" systemVersion="14A379a" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2kx-US-Wc9">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6249" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="2kx-US-Wc9">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6243"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
@@ -96,7 +96,7 @@
                                     <constraint firstAttribute="width" constant="46" id="nR4-q8-o2H"/>
                                     <constraint firstAttribute="height" constant="40" id="o6Q-SL-L62"/>
                                 </constraints>
-                                <state key="normal" title="&gt;">
+                                <state key="normal" title=">">
                                     <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
@@ -160,7 +160,7 @@
                         <color key="backgroundColor" red="0.91764705882352937" green="0.89803921568627454" blue="0.98039215686274506" alpha="1" colorSpace="calibratedRGB"/>
                         <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="0.0" maxY="120"/>
                         <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="nhW-Fx-Bqf">
-                            <size key="itemSize" width="100" height="100"/>
+                            <size key="itemSize" width="100" height="140"/>
                             <size key="headerReferenceSize" width="50" height="50"/>
                             <size key="footerReferenceSize" width="0.0" height="0.0"/>
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="10"/>
@@ -170,52 +170,57 @@
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="100" height="126"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dummy1" translatesAutoresizingMaskIntoConstraints="NO" id="vuX-IQ-3Uz">
-                                            <rect key="frame" x="9" y="7" width="82" height="83"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b2R-fb-SCq">
+                                            <rect key="frame" x="29" y="72" width="42" height="20.5"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="20.5" id="v7L-o3-mzM"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="dummy1" translatesAutoresizingMaskIntoConstraints="NO" id="vuX-IQ-3Uz">
+                                            <rect key="frame" x="9" y="-18.5" width="82" height="83"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                     <integer key="value" value="40"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b2R-fb-SCq">
-                                            <rect key="frame" x="29" y="98" width="42" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                            <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
-                                    <constraint firstAttribute="centerX" secondItem="b2R-fb-SCq" secondAttribute="centerX" id="7lJ-Wp-VJ4"/>
-                                    <constraint firstAttribute="centerY" secondItem="b2R-fb-SCq" secondAttribute="centerY" constant="-45.5" id="9pd-Fs-xDT"/>
+                                    <constraint firstAttribute="centerX" secondItem="b2R-fb-SCq" secondAttribute="centerX" id="1iP-1k-8sc"/>
                                     <constraint firstItem="b2R-fb-SCq" firstAttribute="top" secondItem="vuX-IQ-3Uz" secondAttribute="bottom" constant="8" id="RTx-CY-qvr"/>
                                     <constraint firstAttribute="bottomMargin" secondItem="b2R-fb-SCq" secondAttribute="bottom" constant="-1" id="XPs-pA-Zn0"/>
-                                    <constraint firstAttribute="centerX" secondItem="vuX-IQ-3Uz" secondAttribute="centerX" id="Z8X-mF-naZ"/>
                                 </constraints>
-                                <size key="customSize" width="100" height="126"/>
+                                <size key="customSize" width="100" height="100"/>
                             </collectionViewCell>
                             <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MoreCell" id="YHs-a6-u9E">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="100" height="140"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eep-XA-9ki">
+                                        <view contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eep-XA-9ki">
                                             <rect key="frame" x="25" y="25" width="50" height="50"/>
                                             <color key="backgroundColor" red="0.81568627450980391" green="0.76078431372549016" blue="0.94509803921568625" alpha="1" colorSpace="calibratedRGB"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="50" id="VmP-Dz-VKw"/>
+                                                <constraint firstAttribute="width" constant="50" id="quf-Ic-qTu"/>
+                                            </constraints>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                     <integer key="value" value="25"/>
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </view>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="…" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="loN-xW-YWY">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="…" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="loN-xW-YWY">
                                             <rect key="frame" x="35" y="29" width="31" height="26"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="26" id="hR1-gA-sxB"/>
@@ -229,7 +234,9 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <constraints>
+                                    <constraint firstAttribute="centerY" secondItem="eep-XA-9ki" secondAttribute="centerY" id="59C-Wf-SIz"/>
                                     <constraint firstAttribute="centerX" secondItem="loN-xW-YWY" secondAttribute="centerX" constant="-0.5" id="QBl-6T-so1"/>
+                                    <constraint firstAttribute="centerX" secondItem="eep-XA-9ki" secondAttribute="centerX" id="QSd-Gr-nbf"/>
                                     <constraint firstAttribute="centerY" secondItem="loN-xW-YWY" secondAttribute="centerY" constant="8" id="qC8-1U-xyg"/>
                                 </constraints>
                             </collectionViewCell>
