@@ -10,7 +10,7 @@ import UIKit
 
 class SREpisodesInShowCollectionViewController: UICollectionViewController {
     
-    var program: SverigesRadio.ProgramList? = nil;
+    var program: SverigesRadio.Program? = nil;
     var episodes: SverigesRadio.EpisodeList? = nil
 
     override func viewDidLoad() {
@@ -19,10 +19,17 @@ class SREpisodesInShowCollectionViewController: UICollectionViewController {
         self.clearsSelectionOnViewWillAppear = false
 
         if (self.program != nil) {
-
+            self.program!.fetchEpisodes().onComplete { (value) -> () in
+                self.episodes = value
+                self.collectionView?.reloadData()
+            }
         }
     }
 
+    
+    func item(at indexPath :NSIndexPath) -> SverigesRadio.Episode {
+        return self.episodes![indexPath.row]
+    }
 
     /*
     // MARK: - Navigation
@@ -44,13 +51,26 @@ class SREpisodesInShowCollectionViewController: UICollectionViewController {
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //#warning Incomplete method implementation -- Return the number of items in the section
-        return 1
+        return self.episodes != nil ? self.episodes!.count : 0
     }
 
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as UICollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("EpisodeCell", forIndexPath: indexPath) as UICollectionViewCell
     
         // Configure the cell
+        
+        let item = self.item(at: indexPath)
+        
+        let imageView = cell.viewWithTag(1) as UIImageView
+        let label = cell.viewWithTag(2) as UILabel
+        
+        label.text = item.name
+        UIImage.fetch(item.imageURL) { (image) in
+            imageView.image = image
+            let fade = CATransition()
+            fade.type = kCATransitionFade
+            imageView.layer.addAnimation(fade, forKey: "transition")
+        }
     
         return cell
     }

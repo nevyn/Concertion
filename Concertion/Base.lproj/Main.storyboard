@@ -328,7 +328,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="100" height="126"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" image="dummy1" translatesAutoresizingMaskIntoConstraints="NO" id="57K-9v-r4R">
+                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="dummy1" translatesAutoresizingMaskIntoConstraints="NO" id="57K-9v-r4R">
                                             <rect key="frame" x="10" y="10" width="80" height="80"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
@@ -336,7 +336,7 @@
                                                 </userDefinedRuntimeAttribute>
                                             </userDefinedRuntimeAttributes>
                                         </imageView>
-                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" ambiguous="YES" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QAE-Tl-h7F">
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QAE-Tl-h7F">
                                             <rect key="frame" x="29" y="98" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
@@ -355,6 +355,9 @@
                                     <constraint firstItem="QAE-Tl-h7F" firstAttribute="top" secondItem="57K-9v-r4R" secondAttribute="bottom" constant="8" id="yKi-lF-d26"/>
                                 </constraints>
                                 <size key="customSize" width="100" height="126"/>
+                                <connections>
+                                    <segue destination="Xur-ru-vdw" kind="show" id="9W5-L1-gyN"/>
+                                </connections>
                             </collectionViewCell>
                         </cells>
                         <connections>
@@ -382,15 +385,23 @@
                             <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                         </collectionViewFlowLayout>
                         <cells>
-                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="W5i-wR-5y1">
+                            <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="EpisodeCell" id="tJV-DV-rJu">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                    <rect key="frame" x="0.0" y="0.0" width="132" height="132"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="100" height="126"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Episode name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4e7-Zc-s51">
-                                            <rect key="frame" x="14" y="55" width="110" height="21"/>
+                                        <imageView userInteractionEnabled="NO" tag="1" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="dummy1" translatesAutoresizingMaskIntoConstraints="NO" id="V2k-bl-Kjk">
+                                            <rect key="frame" x="10" y="10" width="80" height="80"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                    <integer key="value" value="40"/>
+                                                </userDefinedRuntimeAttribute>
+                                            </userDefinedRuntimeAttributes>
+                                        </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" ambiguous="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qpl-tI-AOT">
+                                            <rect key="frame" x="29" y="98" width="42" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                             <nil key="highlightedColor"/>
@@ -398,6 +409,16 @@
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
+                                <constraints>
+                                    <constraint firstItem="V2k-bl-Kjk" firstAttribute="top" secondItem="tJV-DV-rJu" secondAttribute="topMargin" constant="2" id="17t-4A-Smy"/>
+                                    <constraint firstAttribute="bottomMargin" secondItem="Qpl-tI-AOT" secondAttribute="bottom" constant="-1" id="8j8-Co-2H3"/>
+                                    <constraint firstItem="Qpl-tI-AOT" firstAttribute="top" secondItem="V2k-bl-Kjk" secondAttribute="bottom" constant="8" id="JwF-4u-qDw"/>
+                                    <constraint firstAttribute="centerX" secondItem="V2k-bl-Kjk" secondAttribute="centerX" id="Mx9-bS-lh2"/>
+                                    <constraint firstItem="V2k-bl-Kjk" firstAttribute="leading" secondItem="tJV-DV-rJu" secondAttribute="leadingMargin" constant="2" id="RcZ-J3-Tag"/>
+                                    <constraint firstAttribute="trailingMargin" secondItem="V2k-bl-Kjk" secondAttribute="trailing" constant="2" id="iVA-DW-gU6"/>
+                                    <constraint firstAttribute="centerX" secondItem="Qpl-tI-AOT" secondAttribute="centerX" id="vXm-Kl-1fq"/>
+                                </constraints>
+                                <size key="customSize" width="100" height="126"/>
                             </collectionViewCell>
                         </cells>
                         <connections>

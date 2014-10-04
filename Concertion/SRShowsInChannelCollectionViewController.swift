@@ -18,22 +18,29 @@ class SRShowsInChannelCollectionViewController: UICollectionViewController {
         self.clearsSelectionOnViewWillAppear = false
         
         if (self.channel != nil) {
-            channel?.fetchPrograms().onComplete({ (value) -> () in
+            self.channel?.fetchPrograms().onComplete({ (value) -> () in
                 self.programs = value
                 self.collectionView?.reloadData()
             })
         }
     }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
+        
+        if let viewController = segue.destinationViewController as? SREpisodesInShowCollectionViewController {
+            let cell = sender as UICollectionViewCell!
+            let indexPath = self.collectionView?.indexPathForCell(cell)
+            let item = self.item(at: indexPath!)
+            
+            viewController.program = item
+        }
+
     }
-    */
 
     // MARK: UICollectionViewDataSource
 

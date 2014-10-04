@@ -88,6 +88,9 @@ class SverigesRadio {
             )
         }
         
+        func fetchEpisodes() -> Fetch<EpisodeList> {
+            return SverigesRadio().episodes(self.id)
+        }
     }
     
     typealias ProgramList = Array<Program>
