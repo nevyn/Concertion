@@ -9,20 +9,28 @@
 import UIKit
 import AVFoundation
 
-public struct Track {
+public struct Track : Equatable {
 	let title: String
 	let artistName: String
 	let imageURL: NSURL?
 	let streamingURL: NSURL!
 }
+public func ==(lhs: Track, rhs: Track) -> Bool {
+	return lhs.title == rhs.title &&
+		lhs.artistName == rhs.artistName &&
+		lhs.imageURL == rhs.imageURL &&
+		lhs.streamingURL == rhs.streamingURL
+}
 
-public class Concertion: NSObject {
+
+public class Concertion: NSObject, Equatable {
 	public var name = RandomConcertionName()
+	public internal(set) var identifier: String?
 	public internal(set) var currentTrack: Track?
-	public internal(set) var playing: Bool = false
+	public internal(set) var playing: Bool? = false
 	public internal(set) var time: PlaybackTime?
 	
-	public struct PlaybackTime {
+	public struct PlaybackTime : Equatable {
 		// the time at which the offset change was made
 		let setAt: NSTimeInterval
 		// the offset into the current track that was set
@@ -37,21 +45,15 @@ public class Concertion: NSObject {
 	}
 	
 	// Broadcast after making changes
-	public func sendWasChangedLocally()
-	{
-		for listener in changedLocallyListeners {
-			listener()
-		}
-	}
-	var changedLocallyListeners : [() -> ()] = []
+	var changedLocallyListener : (() -> ())? = nil
 	
-	public func sendWasChangedRemotely()
-	{
-		for listener in changedRemotelyListeners {
-			listener()
-		}
-	}
-	var changedRemotelyListeners : [() -> ()] = []
+	var changedRemotelyListener : (() -> ())? = nil
+}
+public func ==(lhs: Concertion, rhs: Concertion) -> Bool {
+	return lhs.identifier == rhs.identifier
+}
+public func ==(lhs: Concertion.PlaybackTime, rhs: Concertion.PlaybackTime) -> Bool {
+	return lhs.setAt == rhs.setAt && lhs.offset == rhs.setAt
 }
 
 
@@ -76,17 +78,17 @@ public class PlaybackController: NSObject {
 		self.currentConcertion.currentTrack = track
 		self.currentConcertion.playing = true
 		self.currentConcertion.time = Concertion.PlaybackTime(setAt:NSDate().timeIntervalSince1970, offset:0)
-		self.currentConcertion.sendWasChangedLocally()
+		self.currentConcertion.changedLocallyListener?()
 	}
 	
 	public func joinConcertion(concertion: Concertion) {
-		self.currentConcertion.changedRemotelyListeners.removeAll()
+		self.currentConcertion.changedRemotelyListener = nil
 		self.currentConcertion = concertion
-		self.currentConcertion.changedRemotelyListeners.append({
+		self.currentConcertion.changedRemotelyListener = {
 			[unowned self]
 			(Void) -> Void in
 			self.updateFromConcertion()
-		})
+		}
 		self.updateFromConcertion()
 	}
 	

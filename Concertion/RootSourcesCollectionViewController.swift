@@ -76,7 +76,7 @@ class RootSourcesCollectionViewController: UICollectionViewController {
 		let view = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: "SectionHeader", forIndexPath: indexPath) as UICollectionReusableView
 		let label = view.viewWithTag(1) as UILabel
 		
-		label.text = ["Nearby Concertions", "Recommended SR stations", "Spotify music"][indexPath.section]
+		label.text = ["Friends", "Recommended SR stations", "Spotify music"][indexPath.section]
 		
 		return view
 	}
