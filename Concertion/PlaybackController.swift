@@ -13,7 +13,7 @@ public struct Track {
 	let title: String
 	let artistName: String
 	let imageURL: NSURL?
-	let streamingURL: NSURL
+	let streamingURL: NSURL!
 }
 
 public class Concertion: NSObject {

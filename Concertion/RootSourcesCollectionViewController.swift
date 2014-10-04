@@ -45,7 +45,11 @@ class RootSourcesCollectionViewController: UICollectionViewController {
             )
         }) : []
         
-        return [srTracks]
+        return [
+			[Track(title: "asdf", artistName: "asdf", imageURL: nil, streamingURL: NSURL(string:"asdf")), Track(title: "asdf", artistName: "asdf", imageURL: nil, streamingURL: NSURL(string:"asdf"))],
+			srTracks,
+			[Track(title: "asdf", artistName: "asdf", imageURL: nil, streamingURL: NSURL(string:"asdf")), Track(title: "asdf", artistName: "asdf", imageURL: nil, streamingURL: NSURL(string:"asdf"))]
+		]
     }
 	
 	func contentForSection(section: Int) -> [Track]
