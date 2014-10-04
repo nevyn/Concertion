@@ -38,17 +38,20 @@ public class ConcertionService: NSObject {
 	}
 	
 	func connected() {
-		println("Connected")
+		println("Service Connected")
 	}
 	func disconnected() {
-		println("Disconnected")
+		println("Service Disconnected")
 	}
 	
 	func updated() {
-		println("Concertions:")
+		println("Concertions updated")
 		var newConcertions : [Concertion] = []
 		let oldConcertions = concertions
-		for desc in meteor.collections["concertions"] as [AnyObject] {
+		var collection = meteor.collections["concertions"] as M13OrderedDictionary
+		
+		for key in collection.allKeys() {
+			var desc = collection[key] as NSDictionary
 			var concertion : Concertion!
 			for old in oldConcertions {
 				if old.identifier == desc["_id"] as String? {
@@ -84,7 +87,7 @@ public class ConcertionService: NSObject {
 			
 			newConcertions.append(concertion)
 		}
-		println(meteor.collections["concertions"])
+		concertions = newConcertions
 	}
 	
 	func pushConcertionChanges(concertion: Concertion) {
