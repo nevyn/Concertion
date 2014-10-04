@@ -19,15 +19,32 @@ public class ConcertionService: NSObject {
 		// local testing
 		//ObjectiveDDP *ddp = [[ObjectiveDDP alloc] initWithURLString:@"ws://localhost:3000/websocket" delegate:self.meteorClient];
 
-		meteor.ddp = ddp
-		meteor.ddp.connectWebSocket()
 		
 		super.init()
 		NSNotificationCenter.defaultCenter().addObserver(self, selector:"connected", name:MeteorClientDidConnectNotification, object:nil)
 		NSNotificationCenter.defaultCenter().addObserver(self, selector:"disconnected", name:MeteorClientDidDisconnectNotification, object:nil)
+		
+		NSNotificationCenter.defaultCenter().addObserver(self, selector:"updated", name:"concertions_added", object:nil)
+		NSNotificationCenter.defaultCenter().addObserver(self, selector:"updated", name:"concertions_removed", object:nil)
+		NSNotificationCenter.defaultCenter().addObserver(self, selector:"updated", name:"concertions_changed", object:nil)
+		
+		meteor.ddp = ddp
+		meteor.ddp.connectWebSocket()
 	}
 	
 	deinit {
 		NSNotificationCenter.defaultCenter().removeObserver(self)
+	}
+	
+	func connected() {
+		println("Connected")
+	}
+	func disconnected() {
+		println("Disconnected")
+	}
+	
+	func updated() {
+		println("Concertions:")
+		println(meteor.collections["concertions"])
 	}
 }
