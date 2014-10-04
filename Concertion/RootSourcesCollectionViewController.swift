@@ -35,18 +35,22 @@ class RootSourcesCollectionViewController: UICollectionViewController {
     }
 	
 	// MARK: Data
+    
+    func sections() -> [[Track]] {
+        let srTracks: [Track] = (self.stations != nil) ? self.stations!.map({ (channel) -> Track in
+            return Track(title: channel.name,
+                artistName: "Sveriges Radio",
+                imageURL:channel.imageURL,
+                streamingURL: channel.liveAudioFileURL
+            )
+        }) : []
+        
+        return [srTracks]
+    }
 	
-	func contentForSection(section: Int) -> [String]
+	func contentForSection(section: Int) -> [Track]
 	{
-        let tracks: Array<String> = (self.stations != nil) ? self.stations!.map({ (channel) -> String in
-             return channel.liveAudioFileURL.absoluteString!
-        }) : ["Empty"]
-
-        return [
-			["One", "Two", "Three"],
-            tracks,
-			["http://sverigesradio.se/topsy/ljudfil/4119397.mp3", "One", "Two", "Three"]
-		][section]
+        return self.sections()[section]
 	}
 	
 
@@ -54,7 +58,7 @@ class RootSourcesCollectionViewController: UICollectionViewController {
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         //#warning Incomplete method implementation -- Return the number of sections
-        return 3
+        return self.sections().count
     }
 
 
@@ -94,9 +98,10 @@ class RootSourcesCollectionViewController: UICollectionViewController {
 			self.performSegueWithIdentifier("showSR", sender: self)
 			return
 		}
-
-		var selection = content[indexPath.row] as String
-		PlaybackController.sharedInstance().play(Track(title: "Unknown", artistName: "Unknown", imageURL:nil, streamingURL: NSURL(string:selection)!))
+        
+        let track = content[indexPath.row]
+        
+		PlaybackController.sharedInstance().play(track)
 	}
 
     // MARK: UICollectionViewDelegate
