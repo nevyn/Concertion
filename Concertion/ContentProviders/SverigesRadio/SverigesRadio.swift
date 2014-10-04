@@ -2,67 +2,6 @@ import Foundation
 
 typealias NSDictType = Dictionary<String, AnyObject>
 
-class Fetch<T> {
-    typealias TransformFunc = (dict: NSDictType) -> (T)
-    typealias CompleteFunc = (value: T) -> ()
-    typealias ErrorFunc = (error: NSError) -> ()
-    
-    let URL: NSURL
-    let transformFunc: TransformFunc
-    var completeFunc: CompleteFunc?
-    var errorFunc: ErrorFunc?
-    
-    var completedValue: T?
-    var completedError: NSError?
-    
-    init(_ URL: NSURL, transform: TransformFunc) {
-        self.URL = URL
-        self.transformFunc = transform
-        
-        self.run()
-    }
-    
-    func run() {
-        let request = NSURLRequest(URL: self.URL)
-        NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) { (response: NSURLResponse!, data: NSData!, error: NSError!) -> Void in
-            if data != nil && self.completeFunc != nil {
-                let parser = XMLDictionaryParser()
-                let dict = parser.dictionaryWithData(data) as NSDictType
-                let result = self.transformFunc(dict: dict)
-                self.completedValue = result
-                
-                if (self.completeFunc != nil) {
-                    self.completeFunc!(value: result)
-                }
-            } else if self.errorFunc != nil {
-                print(error.userInfo?.values.array);
-                self.completedError = error
-                
-                if (self.errorFunc != nil) {
-                    self.errorFunc!(error: error)
-                }
-            }
-        }
-    }
-    
-    func onComplete(cb:CompleteFunc) -> Fetch {
-        self.completeFunc = cb
-        if (completedValue != nil) {
-            cb(value: completedValue!)
-        }
-        return self
-    }
-    
-    func onError(cb: ErrorFunc) -> Fetch {
-        self.errorFunc = cb
-        if (completedError != nil) {
-            cb(error: completedError!)
-        }
-        return self
-    }
-
-}
-
 class SverigesRadio {
     let ChannelsURL = NSURL(string: "http://api.sr.se/api/v2/channels")!
     let ProgramsURL = NSURL(string: "http://api.sr.se/api/v2/programs")!
@@ -89,7 +28,7 @@ class SverigesRadio {
     typealias ChannelList = Array<Channel>
     
     func channels() -> Fetch<ChannelList> {
-        return Fetch(ChannelsURL) { (data: NSDictType) -> (ChannelList) in
+        return XMLFetch(ChannelsURL) { (data: NSDictType) -> (ChannelList) in
             let channelsDict = data["channels"] as NSDictionary
             
             let channelsInfos = (channelsDict["channel"] as NSArray) as Array<NSDictType>
@@ -107,7 +46,7 @@ class SverigesRadio {
         /** Fetch the complete channel data */
         func fetch() -> Fetch<Channel> {
             let URL = NSURL(string: String(format: "http://api.sr.se/api/v2/channels/%d", self.id))!
-            return Fetch(URL) { (data: NSDictType) -> (SverigesRadio.Channel) in
+            return XMLFetch(URL) { (data: NSDictType) -> (SverigesRadio.Channel) in
                 let channelInfo = data["channel"] as NSDictionary as NSDictType
                 return SverigesRadio.Channel.fromXMLDictionaryElement(channelInfo)
             }
@@ -140,7 +79,7 @@ class SverigesRadio {
     }
     
     func programs() -> Fetch<Array<Program>> {
-        return Fetch(ProgramsURL) { (data: NSDictType) -> (Array<Program>) in
+        return XMLFetch(ProgramsURL) { (data: NSDictType) -> (Array<Program>) in
             let programsDict = data["programs"] as NSDictionary
             let programInfos = programsDict["program"] as NSArray as Array<NSDictType>
             

@@ -20,6 +20,7 @@
 		057C32C719E022B400B19773 /* SRChannelsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057C32C619E022B400B19773 /* SRChannelsCollectionViewController.swift */; };
 		057C32CD19E022C800B19773 /* SRShowsInChannelCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057C32CC19E022C800B19773 /* SRShowsInChannelCollectionViewController.swift */; };
 		057C32CF19E022DC00B19773 /* SREpisodesInShowCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057C32CE19E022DC00B19773 /* SREpisodesInShowCollectionViewController.swift */; };
+		996B3D9819E03F5C000F5698 /* Fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996B3D9719E03F5C000F5698 /* Fetch.swift */; };
 		998D7E5819E01E1A00B12C6C /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 998D7E5719E01E1A00B12C6C /* XMLDictionary.m */; };
 		998D7E6119E01E1F00B12C6C /* ContentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998D7E5E19E01E1F00B12C6C /* ContentProvider.swift */; };
 		998D7E6219E01E1F00B12C6C /* SverigesRadio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998D7E6019E01E1F00B12C6C /* SverigesRadio.swift */; };
@@ -83,6 +84,7 @@
 		057C32C619E022B400B19773 /* SRChannelsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRChannelsCollectionViewController.swift; sourceTree = "<group>"; };
 		057C32CC19E022C800B19773 /* SRShowsInChannelCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRShowsInChannelCollectionViewController.swift; sourceTree = "<group>"; };
 		057C32CE19E022DC00B19773 /* SREpisodesInShowCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SREpisodesInShowCollectionViewController.swift; sourceTree = "<group>"; };
+		996B3D9719E03F5C000F5698 /* Fetch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fetch.swift; sourceTree = "<group>"; };
 		998D7E5619E01E1A00B12C6C /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLDictionary.h; sourceTree = "<group>"; };
 		998D7E5719E01E1A00B12C6C /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLDictionary.m; sourceTree = "<group>"; };
 		998D7E5E19E01E1F00B12C6C /* ContentProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentProvider.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 			children = (
 				998D7E5E19E01E1F00B12C6C /* ContentProvider.swift */,
 				998D7E5F19E01E1F00B12C6C /* SverigesRadio */,
+				996B3D9719E03F5C000F5698 /* Fetch.swift */,
 			);
 			path = ContentProviders;
 			sourceTree = "<group>";
@@ -350,6 +353,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				996B3D9819E03F5C000F5698 /* Fetch.swift in Sources */,
 				998D7E6119E01E1F00B12C6C /* ContentProvider.swift in Sources */,
 				057C32CD19E022C800B19773 /* SRShowsInChannelCollectionViewController.swift in Sources */,
 				998D7E5819E01E1A00B12C6C /* XMLDictionary.m in Sources */,

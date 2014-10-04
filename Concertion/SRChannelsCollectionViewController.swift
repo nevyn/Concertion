@@ -55,7 +55,12 @@ class SRChannelsCollectionViewController: UICollectionViewController {
         let imageView = cell.viewWithTag(1) as UIImageView
         let label = cell.viewWithTag(2) as UILabel
         
-        imageView.image = UIImage(data: NSData(contentsOfURL: channel.imageURL)!)
+        UIImage.fetch(channel.imageURL) { (image) in
+            if (imageView.image == nil) {
+                imageView.image = image
+            }
+        }
+
         label.text = channel.name
     
         return cell
