@@ -4,3 +4,6 @@
 [submodule "Vendor/ObjectiveDDP"]
 	path = Vendor/ObjectiveDDP
 	url = https://github.com/boundsj/ObjectiveDDP.git
+[submodule "Vendor/MumbleKit"]
+	path = Vendor/MumbleKit
+	url = https://github.com/mumble-voip/mumblekit.git

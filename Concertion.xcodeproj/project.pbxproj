@@ -25,6 +25,8 @@
 		057C32CF19E022DC00B19773 /* SREpisodesInShowCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057C32CE19E022DC00B19773 /* SREpisodesInShowCollectionViewController.swift */; };
 		05FE932519E0B28000C06D9D /* ConcertionRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FE932419E0B28000C06D9D /* ConcertionRootViewController.swift */; };
 		994EEED419E087B60032056B /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 994EEED319E087B60032056B /* FacebookSDK.framework */; };
+		994EEEF719E09EE90032056B /* libMumbleKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 994EEEE919E09ED40032056B /* libMumbleKit.a */; };
+		994EEEFC19E0A01F0032056B /* CCMumble.m in Sources */ = {isa = PBXBuildFile; fileRef = 994EEEFB19E0A01F0032056B /* CCMumble.m */; };
 		996B3D9819E03F5C000F5698 /* Fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996B3D9719E03F5C000F5698 /* Fetch.swift */; };
 		998D7E5819E01E1A00B12C6C /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 998D7E5719E01E1A00B12C6C /* XMLDictionary.m */; };
 		998D7E6119E01E1F00B12C6C /* ContentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998D7E5E19E01E1F00B12C6C /* ContentProvider.swift */; };
@@ -102,6 +104,27 @@
 			remoteGlobalIDString = 1F7A780F9B274CD49973BDD0;
 			remoteInfo = "Pods-SocketRocket";
 		};
+		994EEEE819E09ED40032056B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 994EEEDD19E09ED40032056B /* MumbleKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 28BCF2C1132AE3B40003AEC1;
+			remoteInfo = "MumbleKit (iOS)";
+		};
+		994EEEEA19E09ED40032056B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 994EEEDD19E09ED40032056B /* MumbleKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 2845A71A132D9B2F0034D631;
+			remoteInfo = "MumbleKit (Mac)";
+		};
+		994EEEFD19E0A7FB0032056B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 994EEEDD19E09ED40032056B /* MumbleKit.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 28BCF2C0132AE3B40003AEC1;
+			remoteInfo = "MumbleKit (iOS)";
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
@@ -130,6 +153,9 @@
 		057C32CE19E022DC00B19773 /* SREpisodesInShowCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SREpisodesInShowCollectionViewController.swift; sourceTree = "<group>"; };
 		05FE932419E0B28000C06D9D /* ConcertionRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcertionRootViewController.swift; sourceTree = "<group>"; };
 		994EEED319E087B60032056B /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = Vendor/Facebook/FacebookSDK.framework; sourceTree = SOURCE_ROOT; };
+		994EEEDD19E09ED40032056B /* MumbleKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = MumbleKit.xcodeproj; path = Vendor/MumbleKit/MumbleKit.xcodeproj; sourceTree = SOURCE_ROOT; };
+		994EEEFA19E0A01F0032056B /* CCMumble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CCMumble.h; sourceTree = "<group>"; };
+		994EEEFB19E0A01F0032056B /* CCMumble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CCMumble.m; sourceTree = "<group>"; };
 		996B3D9719E03F5C000F5698 /* Fetch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fetch.swift; sourceTree = "<group>"; };
 		998D7E5619E01E1A00B12C6C /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLDictionary.h; sourceTree = "<group>"; };
 		998D7E5719E01E1A00B12C6C /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLDictionary.m; sourceTree = "<group>"; };
@@ -142,6 +168,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				994EEEF719E09EE90032056B /* libMumbleKit.a in Frameworks */,
 				0558E40619E06F5E004A6178 /* libicucore.dylib in Frameworks */,
 				994EEED419E087B60032056B /* FacebookSDK.framework in Frameworks */,
 				0558E40319E06F37004A6178 /* libObjectiveDDP.a in Frameworks */,
@@ -182,6 +209,7 @@
 		053B4D8119DFE2A600C5B38A /* Concertion */ = {
 			isa = PBXGroup;
 			children = (
+				994EEEF919E0A0080032056B /* Mumble */,
 				998D7E5519E01E1A00B12C6C /* XMLDocument */,
 				998D7E5D19E01E1F00B12C6C /* ContentProviders */,
 				053B4D8419DFE2A600C5B38A /* AppDelegate.swift */,
@@ -196,6 +224,7 @@
 				057C32CC19E022C800B19773 /* SRShowsInChannelCollectionViewController.swift */,
 				057C32CE19E022DC00B19773 /* SREpisodesInShowCollectionViewController.swift */,
 				053B4D8D19DFE2A600C5B38A /* Images.xcassets */,
+				994EEEDD19E09ED40032056B /* MumbleKit.xcodeproj */,
 				053B4DAE19E018BA00C5B38A /* StreamingKit.xcodeproj */,
 				0558E3EE19E06F2C004A6178 /* ObjectiveDDP.xcodeproj */,
 				0558E3F119E06F2C004A6178 /* Pods.xcodeproj */,
@@ -263,6 +292,24 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		994EEEDE19E09ED40032056B /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				994EEEE919E09ED40032056B /* libMumbleKit.a */,
+				994EEEEB19E09ED40032056B /* MumbleKit.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		994EEEF919E0A0080032056B /* Mumble */ = {
+			isa = PBXGroup;
+			children = (
+				994EEEFA19E0A01F0032056B /* CCMumble.h */,
+				994EEEFB19E0A01F0032056B /* CCMumble.m */,
+			);
+			path = Mumble;
+			sourceTree = "<group>";
+		};
 		998D7E5519E01E1A00B12C6C /* XMLDocument */ = {
 			isa = PBXGroup;
 			children = (
@@ -304,6 +351,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				994EEEFE19E0A7FB0032056B /* PBXTargetDependency */,
 			);
 			name = Concertion;
 			productName = Concertion;
@@ -358,6 +406,10 @@
 			productRefGroup = 053B4D8019DFE2A600C5B38A /* Products */;
 			projectDirPath = "";
 			projectReferences = (
+				{
+					ProductGroup = 994EEEDE19E09ED40032056B /* Products */;
+					ProjectRef = 994EEEDD19E09ED40032056B /* MumbleKit.xcodeproj */;
+				},
 				{
 					ProductGroup = 0558E3EF19E06F2C004A6178 /* Products */;
 					ProjectRef = 0558E3EE19E06F2C004A6178 /* ObjectiveDDP.xcodeproj */;
@@ -443,6 +495,20 @@
 			remoteRef = 0558E40119E06F2C004A6178 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
+		994EEEE919E09ED40032056B /* libMumbleKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libMumbleKit.a;
+			remoteRef = 994EEEE819E09ED40032056B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		994EEEEB19E09ED40032056B /* MumbleKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = MumbleKit.framework;
+			remoteRef = 994EEEEA19E09ED40032056B /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 /* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
@@ -478,6 +544,7 @@
 				053B4DA919DFFD4200C5B38A /* PlaybackController.swift in Sources */,
 				05FE932519E0B28000C06D9D /* ConcertionRootViewController.swift in Sources */,
 				053B4D8519DFE2A600C5B38A /* AppDelegate.swift in Sources */,
+				994EEEFC19E0A01F0032056B /* CCMumble.m in Sources */,
 				998D7E6219E01E1F00B12C6C /* SverigesRadio.swift in Sources */,
 				057C32CF19E022DC00B19773 /* SREpisodesInShowCollectionViewController.swift in Sources */,
 				053B4DA719DFF2CD00C5B38A /* ConcertionsCollectionViewController.swift in Sources */,
@@ -501,6 +568,11 @@
 			isa = PBXTargetDependency;
 			target = 053B4D7E19DFE2A600C5B38A /* Concertion */;
 			targetProxy = 053B4D9719DFE2A600C5B38A /* PBXContainerItemProxy */;
+		};
+		994EEEFE19E0A7FB0032056B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "MumbleKit (iOS)";
+			targetProxy = 994EEEFD19E0A7FB0032056B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -608,6 +680,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Vendor/Facebook",
@@ -617,6 +690,7 @@
 					Vendor/ObjectiveDDP/Pods/Headers,
 					Vendor/ObjectiveDDP,
 					"$(inherited)",
+					Vendor/MumbleKit/src/,
 				);
 				INFOPLIST_FILE = Concertion/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
@@ -642,6 +716,7 @@
 					Vendor/ObjectiveDDP/Pods/Headers,
 					Vendor/ObjectiveDDP,
 					"$(inherited)",
+					Vendor/MumbleKit/src/,
 				);
 				INFOPLIST_FILE = Concertion/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;

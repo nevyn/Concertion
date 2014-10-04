@@ -7,3 +7,5 @@
 #import "XMLDictionary.h"
 #import <ObjectiveDDP/MeteorClient.h>
 #import <FacebookSDK/FacebookSDK.h>
+
+#import "CCMumble.h"
