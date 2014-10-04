@@ -6,3 +6,4 @@
 #import <StreamingKit/STKAudioPlayer.h>
 #import "XMLDictionary.h"
 #import <ObjectiveDDP/MeteorClient.h>
+#import <FacebookSDK/FacebookSDK.h>
