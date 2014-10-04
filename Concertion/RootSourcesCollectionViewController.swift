@@ -17,7 +17,12 @@ class RootSourcesCollectionViewController: UICollectionViewController {
         self.clearsSelectionOnViewWillAppear = false
         
         SverigesRadio().channels().onComplete { (value) -> () in
-            self.stations = value;
+            // Take 5 first. the range subscript seems bugged
+            var firstFive = SverigesRadio.ChannelList()
+            for i in 1...min(5, value.count) {
+                firstFive.append(value[i])
+            }
+            self.stations = firstFive
             self.collectionView?.reloadData()
         }
     }
