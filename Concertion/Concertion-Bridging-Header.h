@@ -4,3 +4,4 @@
 
 #import "FBKVOController.h"
 #import <StreamingKit/STKAudioPlayer.h>
+#import "XMLDictionary.h"
