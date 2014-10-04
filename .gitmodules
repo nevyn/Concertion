@@ -1,3 +1,6 @@
 [submodule "Vendor/StreamingKit"]
 	path = Vendor/StreamingKit
 	url = https://github.com/tumtumtum/StreamingKit.git
+[submodule "Vendor/ObjectiveDDP"]
+	path = Vendor/ObjectiveDDP
+	url = https://github.com/boundsj/ObjectiveDDP.git
