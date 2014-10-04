@@ -5,9 +5,13 @@ typealias NSDictType = Dictionary<String, AnyObject>
 class SverigesRadio {
     let ChannelsURL = NSURL(string: "http://api.sr.se/api/v2/channels")!
     let ProgramsURL = NSURL(string: "http://api.sr.se/api/v2/programs")!
+    let ProgramsIndexForChannel = { (channelId: Int) -> (NSURL) in
+        return NSURL(string: String(format: "http://api.sr.se/api/v2/programs/index?channelid=%d", channelId))!
+    }
     let EpisodeIndexURL = NSURL(string: "http://api.sr.se/api/v2/episodes/index")!
     
     struct Channel {
+        let id: Int
         let name: String
         let imageURL: NSURL
         let siteURL: NSURL
@@ -17,11 +21,16 @@ class SverigesRadio {
             let liveAudioInfo = info["liveaudio"] as NSDictionary as NSDictType
             
             return Channel(
-            name: info["_name"] as NSString as String,
-            imageURL: NSURL(string: info["image"] as NSString as String)!,
-            siteURL: NSURL(string: info["siteurl"] as NSString as String)!,
-            liveAudioFileURL: NSURL(string: liveAudioInfo["url"] as NSString as String)!
+                id: (info["_id"] as NSString).integerValue,
+                name: info["_name"] as NSString as String,
+                imageURL: NSURL(string: info["image"] as NSString as String)!,
+                siteURL: NSURL(string: info["siteurl"] as NSString as String)!,
+                liveAudioFileURL: NSURL(string: liveAudioInfo["url"] as NSString as String)!
             )
+        }
+        
+        func fetchPrograms() -> Fetch<ProgramList> {
+            return SverigesRadio().programs(self.id)
         }
     }
     
@@ -54,6 +63,7 @@ class SverigesRadio {
     }
     
     struct Program {
+        let id: Int
         let name: String
         let channel: ChannelLink
         let hasOnDemand: Bool
@@ -65,6 +75,7 @@ class SverigesRadio {
             let channelInfo = info["channel"] as NSDictionary as NSDictType
             
             return Program(
+                id: (info["_id"] as NSString).integerValue,
                 name: info["_name"] as NSString as String,
                 channel: ChannelLink(
                     id: (channelInfo["_id"] as NSString as String).toInt()!,
@@ -76,10 +87,13 @@ class SverigesRadio {
                 description: info["description"] as NSString? as String?
             )
         }
+        
     }
     
-    func programs() -> Fetch<Array<Program>> {
-        return XMLFetch(ProgramsURL) { (data: NSDictType) -> (Array<Program>) in
+    typealias ProgramList = Array<Program>
+    
+    func programs() -> Fetch<ProgramList> {
+        return XMLFetch(ProgramsURL) { (data: NSDictType) -> (ProgramList) in
             let programsDict = data["programs"] as NSDictionary
             let programInfos = programsDict["program"] as NSArray as Array<NSDictType>
             
@@ -89,4 +103,49 @@ class SverigesRadio {
         }
     }
     
+    func programs(channelId: Int) -> Fetch<ProgramList> {
+        return XMLFetch(ProgramsIndexForChannel(channelId)) { (data: NSDictType) -> (ProgramList) in
+            let programsDict = data["programs"] as NSDictionary
+            let programInfos = programsDict["program"] as NSArray as Array<NSDictType>
+            
+            return programInfos.map { (info: NSDictType) -> Program in
+                return Program.fromXMLDictionaryElement(info)
+            }
+        }
+    }
+
+    
+    
+    struct Episode {
+        let id: Int
+        let name: String
+        let description: String?
+        let imageURL: NSURL
+        
+        static func fromXMLDictionaryElement(info: NSDictType) -> (Episode) {
+            return Episode(
+                id: (info["_id"] as NSString).integerValue,
+                name: info["title"] as NSString as String,
+                description: info["description"] as NSString? as String?,
+                imageURL: NSURL(string: info["imageurl"] as NSString as String)!
+            )
+        }
+    }
+    
+    typealias EpisodeList = Array<Episode>
+    
+    func episodes(programid: Int) -> Fetch<EpisodeList> {
+        let URL = NSURL(string:String(format: "%@?programid=%d", EpisodeIndexURL.absoluteString!, programid))!
+        return XMLFetch(URL) { (data: NSDictType) -> (EpisodeList) in
+            let episodesDict = data["episodes"] as NSDictionary
+            let episodeInfos =  episodesDict["episode"] as NSArray as Array<NSDictType>
+
+            return episodeInfos.map { (info: NSDictType) -> Episode in
+                Episode.fromXMLDictionaryElement(info)
+            }
+        }
+    }
 }
+
+
+

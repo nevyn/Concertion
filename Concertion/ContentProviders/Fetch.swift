@@ -8,7 +8,9 @@ class Fetch<T> {
     let URL: NSURL
     let transformFunc: TransformFunc
     var completeFunc: CompleteFunc?
-    var errorFunc: ErrorFunc?
+    var errorFunc: ErrorFunc? = { (error) in
+         print(error)
+    }
     
     var completedValue: T?
     var completedError: NSError?

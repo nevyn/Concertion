@@ -9,10 +9,20 @@
 import UIKit
 
 class SRShowsInChannelCollectionViewController: UICollectionViewController {
+    
+    var channel: SverigesRadio.Channel? = nil;
+    var programs: SverigesRadio.ProgramList? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.clearsSelectionOnViewWillAppear = false
+        
+        if (self.channel != nil) {
+            channel?.fetchPrograms().onComplete({ (value) -> () in
+                self.programs = value
+                self.collectionView?.reloadData()
+            })
+        }
     }
 
     /*
@@ -35,13 +45,31 @@ class SRShowsInChannelCollectionViewController: UICollectionViewController {
 
     override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         //#warning Incomplete method implementation -- Return the number of items in the section
-        return 1
+        return self.programs != nil ? self.programs!.count : 0
     }
 
+    func item(at indexPath :NSIndexPath) -> SverigesRadio.Program {
+        return self.programs![indexPath.row]
+    }
+    
     override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as UICollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ShowCell", forIndexPath: indexPath) as UICollectionViewCell
     
         // Configure the cell
+        
+        let program = item(at: indexPath)
+        
+        let imageView = cell.viewWithTag(1) as UIImageView
+        let label = cell.viewWithTag(2) as UILabel
+        
+        label.text = program.name
+        UIImage.fetch(program.imageURL) { (image) in
+            imageView.image = image
+            let fade = CATransition()
+            fade.type = kCATransitionFade
+            imageView.layer.addAnimation(fade, forKey: "transition")
+        }
+
     
         return cell
     }

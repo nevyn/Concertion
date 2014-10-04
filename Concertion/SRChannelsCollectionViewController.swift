@@ -22,15 +22,26 @@ class SRChannelsCollectionViewController: UICollectionViewController {
         }
     }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using [segue destinationViewController].
         // Pass the selected object to the new view controller.
+        if let viewController = segue.destinationViewController as? SRShowsInChannelCollectionViewController {
+            let cell = sender as UICollectionViewCell!
+            let indexPath = self.collectionView?.indexPathForCell(cell)
+            let item = self.itemAtIndexPath(indexPath!)
+            
+            viewController.channel = item
+
+        }
     }
-    */
+    
+    
+    func itemAtIndexPath(indexPath :NSIndexPath) -> SverigesRadio.Channel {
+        return self.stations![indexPath.row]
+    }
 
     // MARK: UICollectionViewDataSource
 
@@ -49,16 +60,17 @@ class SRChannelsCollectionViewController: UICollectionViewController {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("ChannelCell", forIndexPath: indexPath) as UICollectionViewCell
         
         
-        let channel = self.stations![indexPath.row]
+        let channel = self.itemAtIndexPath(indexPath)
     
         // Configure the cell
         let imageView = cell.viewWithTag(1) as UIImageView
         let label = cell.viewWithTag(2) as UILabel
         
         UIImage.fetch(channel.imageURL) { (image) in
-            if (imageView.image == nil) {
-                imageView.image = image
-            }
+            imageView.image = image
+            let fade = CATransition()
+            fade.type = kCATransitionFade
+            imageView.layer.addAnimation(fade, forKey: "transition")
         }
 
         label.text = channel.name

@@ -9,11 +9,18 @@
 import UIKit
 
 class SREpisodesInShowCollectionViewController: UICollectionViewController {
+    
+    var program: SverigesRadio.ProgramList? = nil;
+    var episodes: SverigesRadio.EpisodeList? = nil
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         self.clearsSelectionOnViewWillAppear = false
+
+        if (self.program != nil) {
+
+        }
     }
 
 
