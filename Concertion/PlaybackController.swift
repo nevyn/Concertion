@@ -24,32 +24,11 @@ public class PlaybackController: NSObject {
 	
 	
 	public func play(url: NSURL) {
-		if let alivePlayer = player {
-			alivePlayer.pause()
-			obs.unobserve(alivePlayer)
-		}
-		var error: NSError?
-		player = AVPlayer(URL: url)
-		if player == nil {
-			println(error)
-		} else {
-			obs.observe(player, keyPath: "status", options: .Initial, block: {
-				(selff : AnyObject!, playerr : AnyObject!, change : [NSObject : AnyObject]!) -> Void in
-				var actualPlayer = playerr as AVPlayer
-				switch(actualPlayer.status) {
-					case .ReadyToPlay:
-						actualPlayer.play()
-					case .Unknown:
-						println("Nothing yet...")
-					case .Failed:
-						println("ERRRORRR \(actualPlayer.error)")
-				}
-			})
-		}
+		player.play(url.absoluteString)
 	}
 	
 	// MARK: Private
-	var player: AVPlayer?
+	var player: STKAudioPlayer = STKAudioPlayer()
 	lazy var obs : FBKVOController = FBKVOController(observer: self, retainObserved: false)
 	
 }

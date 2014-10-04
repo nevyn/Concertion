@@ -19,6 +19,7 @@
 		998D7E5819E01E1A00B12C6C /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 998D7E5719E01E1A00B12C6C /* XMLDictionary.m */; };
 		998D7E6119E01E1F00B12C6C /* ContentProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998D7E5E19E01E1F00B12C6C /* ContentProvider.swift */; };
 		998D7E6219E01E1F00B12C6C /* SverigesRadio.swift in Sources */ = {isa = PBXBuildFile; fileRef = 998D7E6019E01E1F00B12C6C /* SverigesRadio.swift */; };
+		053B4DC019E019A700C5B38A /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 053B4DBF19E019A700C5B38A /* SystemConfiguration.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -79,6 +80,7 @@
 		998D7E5719E01E1A00B12C6C /* XMLDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XMLDictionary.m; sourceTree = "<group>"; };
 		998D7E5E19E01E1F00B12C6C /* ContentProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentProvider.swift; sourceTree = "<group>"; };
 		998D7E6019E01E1F00B12C6C /* SverigesRadio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SverigesRadio.swift; sourceTree = "<group>"; };
+		053B4DBF19E019A700C5B38A /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -86,6 +88,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				053B4DC019E019A700C5B38A /* SystemConfiguration.framework in Frameworks */,
 				053B4DBE19E018C500C5B38A /* libStreamingKit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -133,6 +136,7 @@
 				053B4DAE19E018BA00C5B38A /* StreamingKit.xcodeproj */,
 				053B4D8F19DFE2A600C5B38A /* LaunchScreen.xib */,
 				053B4D8219DFE2A600C5B38A /* Supporting Files */,
+				053B4DBF19E019A700C5B38A /* SystemConfiguration.framework */,
 				053B4DAA19E0092000C5B38A /* Concertion-Bridging-Header.h */,
 			);
 			path = Concertion;
@@ -476,6 +480,7 @@
 				INFOPLIST_FILE = Concertion/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Concertion/Concertion-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -494,6 +499,7 @@
 				INFOPLIST_FILE = Concertion/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "Concertion/Concertion-Bridging-Header.h";
 			};
