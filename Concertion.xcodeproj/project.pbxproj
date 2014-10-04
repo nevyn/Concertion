@@ -12,7 +12,7 @@
 		053B4D8E19DFE2A600C5B38A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 053B4D8D19DFE2A600C5B38A /* Images.xcassets */; };
 		053B4D9119DFE2A600C5B38A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 053B4D8F19DFE2A600C5B38A /* LaunchScreen.xib */; };
 		053B4D9D19DFE2A600C5B38A /* ConcertionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053B4D9C19DFE2A600C5B38A /* ConcertionTests.swift */; };
-		053B4DA719DFF2CD00C5B38A /* RootSourcesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053B4DA619DFF2CD00C5B38A /* RootSourcesCollectionViewController.swift */; };
+		053B4DA719DFF2CD00C5B38A /* ConcertionsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053B4DA619DFF2CD00C5B38A /* ConcertionsCollectionViewController.swift */; };
 		053B4DA919DFFD4200C5B38A /* PlaybackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053B4DA819DFFD4200C5B38A /* PlaybackController.swift */; };
 		053B4DAD19E0092100C5B38A /* FBKVOController.m in Sources */ = {isa = PBXBuildFile; fileRef = 053B4DAC19E0092100C5B38A /* FBKVOController.m */; };
 		053B4DBE19E018C500C5B38A /* libStreamingKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 053B4DB719E018BB00C5B38A /* libStreamingKit.a */; };
@@ -23,6 +23,7 @@
 		057C32C719E022B400B19773 /* SRChannelsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057C32C619E022B400B19773 /* SRChannelsCollectionViewController.swift */; };
 		057C32CD19E022C800B19773 /* SRShowsInChannelCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057C32CC19E022C800B19773 /* SRShowsInChannelCollectionViewController.swift */; };
 		057C32CF19E022DC00B19773 /* SREpisodesInShowCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 057C32CE19E022DC00B19773 /* SREpisodesInShowCollectionViewController.swift */; };
+		05FE932519E0B28000C06D9D /* ConcertionRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05FE932419E0B28000C06D9D /* ConcertionRootViewController.swift */; };
 		994EEED419E087B60032056B /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 994EEED319E087B60032056B /* FacebookSDK.framework */; };
 		996B3D9819E03F5C000F5698 /* Fetch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 996B3D9719E03F5C000F5698 /* Fetch.swift */; };
 		998D7E5819E01E1A00B12C6C /* XMLDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 998D7E5719E01E1A00B12C6C /* XMLDictionary.m */; };
@@ -113,7 +114,7 @@
 		053B4D9619DFE2A600C5B38A /* ConcertionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ConcertionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		053B4D9B19DFE2A600C5B38A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		053B4D9C19DFE2A600C5B38A /* ConcertionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcertionTests.swift; sourceTree = "<group>"; };
-		053B4DA619DFF2CD00C5B38A /* RootSourcesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootSourcesCollectionViewController.swift; sourceTree = "<group>"; };
+		053B4DA619DFF2CD00C5B38A /* ConcertionsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcertionsCollectionViewController.swift; sourceTree = "<group>"; };
 		053B4DA819DFFD4200C5B38A /* PlaybackController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaybackController.swift; sourceTree = "<group>"; };
 		053B4DAA19E0092000C5B38A /* Concertion-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Concertion-Bridging-Header.h"; sourceTree = "<group>"; };
 		053B4DAB19E0092100C5B38A /* FBKVOController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBKVOController.h; path = Vendor/FBKVOController/FBKVOController.h; sourceTree = SOURCE_ROOT; };
@@ -127,6 +128,7 @@
 		057C32C619E022B400B19773 /* SRChannelsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRChannelsCollectionViewController.swift; sourceTree = "<group>"; };
 		057C32CC19E022C800B19773 /* SRShowsInChannelCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SRShowsInChannelCollectionViewController.swift; sourceTree = "<group>"; };
 		057C32CE19E022DC00B19773 /* SREpisodesInShowCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SREpisodesInShowCollectionViewController.swift; sourceTree = "<group>"; };
+		05FE932419E0B28000C06D9D /* ConcertionRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConcertionRootViewController.swift; sourceTree = "<group>"; };
 		994EEED319E087B60032056B /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FacebookSDK.framework; path = Vendor/Facebook/FacebookSDK.framework; sourceTree = SOURCE_ROOT; };
 		996B3D9719E03F5C000F5698 /* Fetch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Fetch.swift; sourceTree = "<group>"; };
 		998D7E5619E01E1A00B12C6C /* XMLDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XMLDictionary.h; sourceTree = "<group>"; };
@@ -184,7 +186,8 @@
 				998D7E5D19E01E1F00B12C6C /* ContentProviders */,
 				053B4D8419DFE2A600C5B38A /* AppDelegate.swift */,
 				053B4DA819DFFD4200C5B38A /* PlaybackController.swift */,
-				053B4DA619DFF2CD00C5B38A /* RootSourcesCollectionViewController.swift */,
+				053B4DA619DFF2CD00C5B38A /* ConcertionsCollectionViewController.swift */,
+				05FE932419E0B28000C06D9D /* ConcertionRootViewController.swift */,
 				053B4DAB19E0092100C5B38A /* FBKVOController.h */,
 				053B4DAC19E0092100C5B38A /* FBKVOController.m */,
 				053B4D8A19DFE2A600C5B38A /* Main.storyboard */,
@@ -473,10 +476,11 @@
 				998D7E5819E01E1A00B12C6C /* XMLDictionary.m in Sources */,
 				053B4DAD19E0092100C5B38A /* FBKVOController.m in Sources */,
 				053B4DA919DFFD4200C5B38A /* PlaybackController.swift in Sources */,
+				05FE932519E0B28000C06D9D /* ConcertionRootViewController.swift in Sources */,
 				053B4D8519DFE2A600C5B38A /* AppDelegate.swift in Sources */,
 				998D7E6219E01E1F00B12C6C /* SverigesRadio.swift in Sources */,
 				057C32CF19E022DC00B19773 /* SREpisodesInShowCollectionViewController.swift in Sources */,
-				053B4DA719DFF2CD00C5B38A /* RootSourcesCollectionViewController.swift in Sources */,
+				053B4DA719DFF2CD00C5B38A /* ConcertionsCollectionViewController.swift in Sources */,
 				057C32C719E022B400B19773 /* SRChannelsCollectionViewController.swift in Sources */,
 				0558E40819E07170004A6178 /* ConcertionService.swift in Sources */,
 			);
