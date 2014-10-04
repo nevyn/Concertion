@@ -16,6 +16,26 @@ public struct Track {
 	let streamingURL: NSURL
 }
 
+public class Concertion: NSObject {
+	public internal(set) var currentTrack: Track?
+	public internal(set) var playing: Bool = false
+	public internal(set) var time: PlaybackTime?
+	
+	public struct PlaybackTime {
+		// the time at which the offset change was made
+		let setAt: NSTimeInterval
+		// the offset into the current track that was set
+		let offset: NSTimeInterval
+		
+		// given the above two, which offset should we currently be at?
+		func currentOffset() -> NSTimeInterval {
+			let now = NSDate().timeIntervalSince1970
+
+			return now - setAt + offset
+		}
+	}
+}
+
 
 public class PlaybackController: NSObject {
 	
@@ -29,17 +49,22 @@ public class PlaybackController: NSObject {
 		return _playControllerSingleton!
 	}
 	
-	public private(set) var currentTrack: Track?
+	
+	public var currentConcertion : Concertion = Concertion() {
+		didSet {
+			
+		}
+	}
 	
 	
 	public func play(track: Track) {
 		player.play(track.streamingURL.absoluteString)
-		currentTrack = track
+		self.currentConcertion.currentTrack = track
 	}
 	
 	// MARK: Private
-	var player: STKAudioPlayer = STKAudioPlayer()
-	lazy var obs : FBKVOController = FBKVOController(observer: self, retainObserved: false)
+	private var player: STKAudioPlayer = STKAudioPlayer()
+	private lazy var obs : FBKVOController = FBKVOController(observer: self, retainObserved: false)
 	
 }
 var _playControllerSingleton : PlaybackController?
