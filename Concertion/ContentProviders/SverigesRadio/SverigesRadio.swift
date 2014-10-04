@@ -64,9 +64,9 @@ class Fetch<T> {
 }
 
 class SverigesRadio {
-    let ChannelsURL = NSURL(string: "http://api.sr.se/api/v2/channels")
-    let ProgramsURL = NSURL(string: "http://api.sr.se/api/v2/programs")
-    let EpisodeIndexURL = NSURL(string: "http://api.sr.se/api/v2/episodes/index")
+    let ChannelsURL = NSURL(string: "http://api.sr.se/api/v2/channels")!
+    let ProgramsURL = NSURL(string: "http://api.sr.se/api/v2/programs")!
+    let EpisodeIndexURL = NSURL(string: "http://api.sr.se/api/v2/episodes/index")!
     
     struct Channel {
         let name: String
@@ -79,9 +79,9 @@ class SverigesRadio {
             
             return Channel(
             name: info["_name"] as NSString as String,
-            imageURL: NSURL(string: info["image"] as NSString as String),
-            siteURL: NSURL(string: info["siteurl"] as NSString as String),
-            liveAudioFileURL: NSURL(string: liveAudioInfo["url"] as NSString as String)
+            imageURL: NSURL(string: info["image"] as NSString as String)!,
+            siteURL: NSURL(string: info["siteurl"] as NSString as String)!,
+            liveAudioFileURL: NSURL(string: liveAudioInfo["url"] as NSString as String)!
             )
         }
     }
@@ -104,7 +104,7 @@ class SverigesRadio {
         
         /** Fetch the complete channel data */
         func fetch() -> Fetch<Channel> {
-            let URL = NSURL(string: String(format: "http://api.sr.se/api/v2/channels/%d", self.id))
+            let URL = NSURL(string: String(format: "http://api.sr.se/api/v2/channels/%d", self.id))!
             return Fetch(URL) { (data: NSDictType) -> (SverigesRadio.Channel) in
                 let channelInfo = data["channel"] as NSDictionary as NSDictType
                 return SverigesRadio.Channel.fromXMLDictionaryElement(channelInfo)
@@ -131,7 +131,7 @@ class SverigesRadio {
                 ),
                 hasOnDemand: (info["hasondemand"] as NSString).boolValue,
                 hasPod: (info["haspod"] as NSString).boolValue,
-                imageURL: NSURL(string: info["programimage"] as NSString as String),
+                imageURL: NSURL(string: info["programimage"] as NSString as String)!,
                 description: info["description"] as NSString? as String?
             )
         }
