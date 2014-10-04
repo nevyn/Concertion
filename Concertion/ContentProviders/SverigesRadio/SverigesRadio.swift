@@ -124,13 +124,51 @@ class SverigesRadio {
         let name: String
         let description: String?
         let imageURL: NSURL
+        let broadcastURL: NSURL?
+        
+        
+        static func _broadcastURL(info: NSDictType) -> NSURL? {
+            if let a = info["broadcast"] as? NSDictionary {
+                if let b = a["broadcastfiles"] as? NSDictionary {
+                    if let c = b["broadcastfile"] as? NSDictionary {
+                        if let d = c["url"] as? NSString {
+                            return NSURL(string: d as String)
+                        }
+                    }
+                    if let c = b["broadcastfile"] as? NSArray {
+                        if let d = c.firstObject as? NSDictionary {
+                            if let e = d["url"] as? NSString {
+                                return NSURL(string: e as String)
+                            }
+                        }
+                    }
+                }
+            }
+            return nil
+        }
+        
+        static func _podURL(info: NSDictType) -> NSURL? {
+            if let a = info["listenpodfile"] as? NSDictionary {
+                if let b = a["url"] as? NSString {
+                    return NSURL(string: b as String)
+                }
+            }
+            return nil;
+        }
         
         static func fromXMLDictionaryElement(info: NSDictType) -> (Episode) {
+            print(info)
+            var fileURL: NSURL? = self._broadcastURL(info)
+            if (fileURL == nil) {
+                fileURL = self._podURL(info)
+            }
+            
             return Episode(
                 id: (info["_id"] as NSString).integerValue,
                 name: info["title"] as NSString as String,
                 description: info["description"] as NSString? as String?,
-                imageURL: NSURL(string: info["imageurl"] as NSString as String)!
+                imageURL: NSURL(string: info["imageurl"] as NSString as String)!,
+                broadcastURL: fileURL
             )
         }
     }

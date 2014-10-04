@@ -42,6 +42,18 @@ class SREpisodesInShowCollectionViewController: UICollectionViewController {
     */
 
     // MARK: UICollectionViewDataSource
+    
+    override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        let episode = self.episodes![indexPath.row]
+        
+        let track = Track(
+            title: episode.name,
+            artistName: self.program!.name,
+            imageURL: episode.imageURL,
+            streamingURL: episode.broadcastURL!
+        )
+        PlaybackController.sharedInstance().play(track)
+    }
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
         //#warning Incomplete method implementation -- Return the number of sections
