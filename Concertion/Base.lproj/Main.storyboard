@@ -134,7 +134,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="cWU-TN-N8c" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
-        <!--Root Sources Collection View Controller-->
+        <!--Concertion-->
         <scene sceneID="zXV-kh-5gU">
             <objects>
                 <collectionViewController id="oUt-BL-wFb" customClass="RootSourcesCollectionViewController" customModule="Concertion" customModuleProvider="target" sceneMemberID="viewController">
@@ -233,7 +233,7 @@
                             <outlet property="delegate" destination="oUt-BL-wFb" id="4YH-6z-aXf"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="di9-Mu-esY"/>
+                    <navigationItem key="navigationItem" title="Concertion" id="di9-Mu-esY"/>
                     <connections>
                         <segue destination="0iv-L4-oFM" kind="show" identifier="showSR" id="RlB-CF-lcG"/>
                     </connections>
@@ -242,10 +242,10 @@
             </objects>
             <point key="canvasLocation" x="1860" y="-103"/>
         </scene>
-        <!--Channels Collection View Controller-->
+        <!--Sveriges Radio-->
         <scene sceneID="K60-Gb-IMk">
             <objects>
-                <collectionViewController id="0iv-L4-oFM" customClass="SRChannelsCollectionViewController" customModule="Concertion" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController title="Sveriges Radio" id="0iv-L4-oFM" customClass="SRChannelsCollectionViewController" customModule="Concertion" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="wg6-Su-6hl">
                         <rect key="frame" x="0.0" y="44" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -463,6 +463,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.86564493179321289" green="0.82822132110595703" blue="0.96274822950363159" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="0.20957739651203156" green="0.2015814483165741" blue="0.23030295968055725" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
