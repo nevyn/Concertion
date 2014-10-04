@@ -91,7 +91,7 @@ class RootSourcesCollectionViewController: UICollectionViewController {
 		}
 
 		var selection = content[indexPath.row] as String
-		PlaybackController.sharedInstance().play(NSURL(string: selection)!)
+		PlaybackController.sharedInstance().play(Track(title: "Unknown", artistName: "Unknown", imageURL:nil, streamingURL: NSURL(string:selection)!))
 	}
 
     // MARK: UICollectionViewDelegate

@@ -9,12 +9,19 @@
 import UIKit
 import AVFoundation
 
+public struct Track {
+	let title: String
+	let artistName: String
+	let imageURL: NSURL?
+	let streamingURL: NSURL
+}
+
 
 public class PlaybackController: NSObject {
 	
 	// MARK: Public
 	
-	class func sharedInstance() -> PlaybackController
+	public class func sharedInstance() -> PlaybackController
 	{
 		if _playControllerSingleton == nil {
 			_playControllerSingleton = PlaybackController()
@@ -22,9 +29,12 @@ public class PlaybackController: NSObject {
 		return _playControllerSingleton!
 	}
 	
+	public private(set) var currentTrack: Track?
 	
-	public func play(url: NSURL) {
-		player.play(url.absoluteString)
+	
+	public func play(track: Track) {
+		player.play(track.streamingURL.absoluteString)
+		currentTrack = track
 	}
 	
 	// MARK: Private
