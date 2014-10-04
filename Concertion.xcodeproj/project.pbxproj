@@ -13,6 +13,9 @@
 		053B4D9119DFE2A600C5B38A /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 053B4D8F19DFE2A600C5B38A /* LaunchScreen.xib */; };
 		053B4D9D19DFE2A600C5B38A /* ConcertionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053B4D9C19DFE2A600C5B38A /* ConcertionTests.swift */; };
 		053B4DA719DFF2CD00C5B38A /* RootSourcesCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053B4DA619DFF2CD00C5B38A /* RootSourcesCollectionViewController.swift */; };
+		053B4DA919DFFD4200C5B38A /* PlaybackController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 053B4DA819DFFD4200C5B38A /* PlaybackController.swift */; };
+		053B4DAD19E0092100C5B38A /* FBKVOController.m in Sources */ = {isa = PBXBuildFile; fileRef = 053B4DAC19E0092100C5B38A /* FBKVOController.m */; };
+		053B4DBE19E018C500C5B38A /* libStreamingKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 053B4DB719E018BB00C5B38A /* libStreamingKit.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -22,6 +25,34 @@
 			proxyType = 1;
 			remoteGlobalIDString = 053B4D7E19DFE2A600C5B38A;
 			remoteInfo = Concertion;
+		};
+		053B4DB619E018BB00C5B38A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 053B4DAE19E018BA00C5B38A /* StreamingKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A1E7C4C8188D57F50010896F;
+			remoteInfo = StreamingKit;
+		};
+		053B4DB819E018BB00C5B38A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 053B4DAE19E018BA00C5B38A /* StreamingKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A1E7C4D8188D57F60010896F;
+			remoteInfo = StreamingKitTests;
+		};
+		053B4DBA19E018BB00C5B38A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 053B4DAE19E018BA00C5B38A /* StreamingKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A1A49969189E744400E2A2E2;
+			remoteInfo = StreamingKitMac;
+		};
+		053B4DBC19E018BB00C5B38A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 053B4DAE19E018BA00C5B38A /* StreamingKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A1A4997A189E744500E2A2E2;
+			remoteInfo = StreamingKitMacTests;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -36,6 +67,11 @@
 		053B4D9B19DFE2A600C5B38A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		053B4D9C19DFE2A600C5B38A /* ConcertionTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConcertionTests.swift; sourceTree = "<group>"; };
 		053B4DA619DFF2CD00C5B38A /* RootSourcesCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootSourcesCollectionViewController.swift; sourceTree = "<group>"; };
+		053B4DA819DFFD4200C5B38A /* PlaybackController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PlaybackController.swift; sourceTree = "<group>"; };
+		053B4DAA19E0092000C5B38A /* Concertion-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Concertion-Bridging-Header.h"; sourceTree = "<group>"; };
+		053B4DAB19E0092100C5B38A /* FBKVOController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FBKVOController.h; path = Vendor/FBKVOController/FBKVOController.h; sourceTree = SOURCE_ROOT; };
+		053B4DAC19E0092100C5B38A /* FBKVOController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FBKVOController.m; path = Vendor/FBKVOController/FBKVOController.m; sourceTree = SOURCE_ROOT; };
+		053B4DAE19E018BA00C5B38A /* StreamingKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = StreamingKit.xcodeproj; path = Vendor/StreamingKit/StreamingKit/StreamingKit.xcodeproj; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				053B4DBE19E018C500C5B38A /* libStreamingKit.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -79,10 +116,15 @@
 			children = (
 				053B4D8419DFE2A600C5B38A /* AppDelegate.swift */,
 				053B4DA619DFF2CD00C5B38A /* RootSourcesCollectionViewController.swift */,
+				053B4DA819DFFD4200C5B38A /* PlaybackController.swift */,
+				053B4DAB19E0092100C5B38A /* FBKVOController.h */,
+				053B4DAC19E0092100C5B38A /* FBKVOController.m */,
 				053B4D8A19DFE2A600C5B38A /* Main.storyboard */,
 				053B4D8D19DFE2A600C5B38A /* Images.xcassets */,
+				053B4DAE19E018BA00C5B38A /* StreamingKit.xcodeproj */,
 				053B4D8F19DFE2A600C5B38A /* LaunchScreen.xib */,
 				053B4D8219DFE2A600C5B38A /* Supporting Files */,
+				053B4DAA19E0092000C5B38A /* Concertion-Bridging-Header.h */,
 			);
 			path = Concertion;
 			sourceTree = "<group>";
@@ -110,6 +152,17 @@
 				053B4D9B19DFE2A600C5B38A /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		053B4DAF19E018BA00C5B38A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				053B4DB719E018BB00C5B38A /* libStreamingKit.a */,
+				053B4DB919E018BB00C5B38A /* StreamingKitTests.xctest */,
+				053B4DBB19E018BB00C5B38A /* libStreamingKitMac.a */,
+				053B4DBD19E018BB00C5B38A /* StreamingKitMacTests.xctest */,
+			);
+			name = Products;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -179,6 +232,12 @@
 			mainGroup = 053B4D7619DFE2A500C5B38A;
 			productRefGroup = 053B4D8019DFE2A600C5B38A /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 053B4DAF19E018BA00C5B38A /* Products */;
+					ProjectRef = 053B4DAE19E018BA00C5B38A /* StreamingKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				053B4D7E19DFE2A600C5B38A /* Concertion */,
@@ -186,6 +245,37 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		053B4DB719E018BB00C5B38A /* libStreamingKit.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libStreamingKit.a;
+			remoteRef = 053B4DB619E018BB00C5B38A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		053B4DB919E018BB00C5B38A /* StreamingKitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = StreamingKitTests.xctest;
+			remoteRef = 053B4DB819E018BB00C5B38A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		053B4DBB19E018BB00C5B38A /* libStreamingKitMac.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libStreamingKitMac.a;
+			remoteRef = 053B4DBA19E018BB00C5B38A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		053B4DBD19E018BB00C5B38A /* StreamingKitMacTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = StreamingKitMacTests.xctest;
+			remoteRef = 053B4DBC19E018BB00C5B38A /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		053B4D7D19DFE2A600C5B38A /* Resources */ = {
@@ -212,6 +302,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				053B4DAD19E0092100C5B38A /* FBKVOController.m in Sources */,
+				053B4DA919DFFD4200C5B38A /* PlaybackController.swift in Sources */,
 				053B4D8519DFE2A600C5B38A /* AppDelegate.swift in Sources */,
 				053B4DA719DFF2CD00C5B38A /* RootSourcesCollectionViewController.swift in Sources */,
 			);
@@ -338,9 +430,16 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				HEADER_SEARCH_PATHS = (
+					Vendor/StreamingKit/StreamingKit,
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = Concertion/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Concertion/Concertion-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
@@ -348,9 +447,15 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				HEADER_SEARCH_PATHS = (
+					Vendor/StreamingKit/StreamingKit,
+					"$(inherited)",
+				);
 				INFOPLIST_FILE = Concertion/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "Concertion/Concertion-Bridging-Header.h";
 			};
 			name = Release;
 		};

@@ -32,7 +32,7 @@ class RootSourcesCollectionViewController: UICollectionViewController {
 	{
 		return [
 			[1, 2, 3],
-			[1, 2, 3, 4, 5],
+			["http://sverigesradio.se/topsy/direkt/163.mp3", "http://sverigesradio.se/topsy/direkt/210.mp3", 3, 4, 5],
 			[1, 2, 3, 4]
 		][section];
 	}
@@ -73,6 +73,12 @@ class RootSourcesCollectionViewController: UICollectionViewController {
     
         return cell
     }
+	
+	override  func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath)
+	{
+		var selection = contentForSection(indexPath.section)[indexPath.row] as String
+		PlaybackController.sharedInstance().play(NSURL(string: selection)!)
+	}
 
     // MARK: UICollectionViewDelegate
 

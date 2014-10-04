@@ -1,0 +1,3 @@
+[submodule "Vendor/StreamingKit"]
+	path = Vendor/StreamingKit
+	url = https://github.com/tumtumtum/StreamingKit.git
