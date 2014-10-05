@@ -178,12 +178,16 @@ class SverigesRadio {
     func episodes(programid: Int) -> Fetch<EpisodeList> {
         let URL = NSURL(string:String(format: "%@?programid=%d", EpisodeIndexURL.absoluteString!, programid))!
         return XMLFetch(URL) { (data: NSDictType) -> (EpisodeList) in
-            let episodesDict = data["episodes"] as NSDictionary
-            let episodeInfos =  episodesDict["episode"] as NSArray as Array<NSDictType>
-
-            return episodeInfos.map { (info: NSDictType) -> Episode in
-                Episode.fromXMLDictionaryElement(info)
-            }
+            let episodesDict = data["episodes"] as? NSDictionary
+            let episodeInfoMaybe = episodesDict?["episode"] as? NSArray as? Array<NSDictType>
+			
+			if let episodeInfos = episodeInfoMaybe {
+				return episodeInfos.map { (info: NSDictType) -> Episode in
+					Episode.fromXMLDictionaryElement(info)
+				}
+			} else {
+				return []
+			}
         }
     }
 }
