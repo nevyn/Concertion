@@ -10,3 +10,7 @@
 #import "FBKVOController.h"
 
 #import "CCMumble.h"
+
+static inline UInt32 playerStateToInt(STKAudioPlayerState type) {
+    return (UInt32) type;
+}

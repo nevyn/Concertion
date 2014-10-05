@@ -21,7 +21,7 @@ public class ConcertionService: NSObject {
 	public override init() {
 		self.meteor = MeteorClient(DDPVersion:"pre2")
 		meteor.addSubscription("concertions")
-		ddp = ObjectiveDDP(URLString:"ws://api.concertion.eu:3000/websocket", delegate:meteor)
+		ddp = ObjectiveDDP(URLString:"ws://concertion.meteor.com/websocket", delegate:meteor)
 		// local testing
 		//ObjectiveDDP *ddp = [[ObjectiveDDP alloc] initWithURLString:@"ws://localhost:3000/websocket" delegate:self.meteorClient];
 
@@ -91,8 +91,9 @@ public class ConcertionService: NSObject {
 				setIfChanged(&concertion.time, time == nil ? nil : Concertion.PlaybackTime(
 					setAt: time["setAt"] as NSTimeInterval,
 					offset: time["offset"] as NSTimeInterval
-				))].reduce(true, { $0 && $1 })
+				))].reduce(true, { $0 && $1 }) || true /* lol XXXX FIXMEEE */
 			{
+				println("remote changed!")
 				concertion.changedRemotelyListener?()
 			}
 			

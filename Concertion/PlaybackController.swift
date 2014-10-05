@@ -81,7 +81,7 @@ public func ==(lhs: Concertion.PlaybackTime, rhs: Concertion.PlaybackTime) -> Bo
 }
 
 
-public class PlaybackController: NSObject {
+public class PlaybackController: NSObject, STKAudioPlayerDelegate {
 	
 	// MARK: Public
 	
@@ -91,6 +91,12 @@ public class PlaybackController: NSObject {
 			_playControllerSingleton = PlaybackController()
 		}
 		return _playControllerSingleton!
+	}
+	
+	private override init()
+	{
+		super.init()
+		player.delegate = self
 	}
 	
 	
@@ -105,6 +111,11 @@ public class PlaybackController: NSObject {
 			println("Creating concertion!")
 			currentConcertion = Concertion()
 			ConcertionService.sharedInstance().registerNewConcertion(currentConcertion)
+			self.currentConcertion?.changedRemotelyListener = {
+				[unowned self]
+				(Void) -> Void in
+				self.updateFromConcertion()
+			}
 		}
 		
 		self.currentConcertion.currentTrack = track
@@ -130,10 +141,12 @@ public class PlaybackController: NSObject {
 	// MARK: Private
 	private var player: STKAudioPlayer = STKAudioPlayer()
 	private lazy var obs : FBKVOController = FBKVOController(observer: self, retainObserved: false)
+	private var doSeek = false
 	
 	private func updateFromConcertion() {
 		if let track = self.currentConcertion?.currentTrack {
 			println("Updating from concertion: playing \(track.streamingURL) from \(self.currentConcertion.time!.currentOffset())")
+			doSeek = true
 			player.play(track.streamingURL.absoluteString)
 			player.seekToTime(self.currentConcertion.time!.currentOffset())
 		} else {
@@ -142,8 +155,41 @@ public class PlaybackController: NSObject {
 		}
 	}
 	
+	public func audioPlayer(player: STKAudioPlayer, didStartPlayingQueueItemId: NSObject)
+	{
+	
+	}
+	public func audioPlayer(player: STKAudioPlayer, didFinishBufferingSourceWithQueueItemId: NSObject)
+	{
+	
+	}
+	public func audioPlayer(player: STKAudioPlayer, stateChanged: STKAudioPlayerState, previousState:STKAudioPlayerState)
+	{
+		if previousState == STKAudioPlayerStateBuffering && stateChanged == STKAudioPlayerStatePlaying && doSeek {
+			player.seekToTime(self.currentConcertion.time!.currentOffset())
+			doSeek = false
+		}
+	}
+	public func audioPlayer(player: STKAudioPlayer, didFinishPlayingQueueItemId:NSObject, withReason:STKAudioPlayerStopReason, andProgress:Double, andDuration:Double)
+	{
+	
+	}
+	public func audioPlayer(player: STKAudioPlayer, unexpectedError:STKAudioPlayerErrorCode)
+	{
+		println("AudioPlayer error: \(unexpectedError)")
+	}
+	public func audioPlayer(player: STKAudioPlayer, logInfo:NSString)
+	{
+		println("AudioPlayer: \(logInfo)")
+	}
+
+	
 }
 var _playControllerSingleton : PlaybackController?
+
+public func ==(lhs: STKAudioPlayerState, rhs: STKAudioPlayerState) -> Bool {
+    return playerStateToInt(lhs) == playerStateToInt(rhs)
+}
 
 extension Array {
 	func randomChoice() -> T {
