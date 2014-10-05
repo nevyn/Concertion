@@ -25,7 +25,7 @@ public func ==(lhs: Track, rhs: Track) -> Bool {
 
 public class Concertion: NSObject, Equatable {
 	public var name : String? = RandomConcertionName()
-	public internal(set) var identifier: String?
+	public internal(set) var identifier: String? = NSUUID().UUIDString
 	public internal(set) var currentTrack: Track?
 	public internal(set) var playing: Bool? = false
 	public internal(set) var time: PlaybackTime?
@@ -42,6 +42,30 @@ public class Concertion: NSObject, Equatable {
 
 			return now - setAt + offset
 		}
+	}
+	
+	internal func serialized() -> Dictionary<String, AnyObject>
+	{
+		var ret : Dictionary<String, AnyObject> = Dictionary()
+		if self.currentTrack != nil {
+			ret["currentTrack"] = [
+				"title": self.currentTrack!.title,
+				"artistName": self.currentTrack!.artistName,
+				"imageURL": self.currentTrack!.imageURL != nil ? self.currentTrack!.imageURL!.absoluteString! : "",
+				"streamingURL": self.currentTrack!.streamingURL != nil ? self.currentTrack!.streamingURL!.absoluteString! : "",
+			]
+		}
+		ret["name"] = self.name!
+		ret["playing"] = self.playing?
+		if self.time != nil {
+			ret["time"] = [
+				"setAt": self.time!.setAt,
+				"offset": self.time!.offset,
+			]
+		}
+		println("Serializing as \(ret)")
+		
+		return ret
 	}
 	
 	// Broadcast after making changes

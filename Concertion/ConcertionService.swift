@@ -101,11 +101,39 @@ public class ConcertionService: NSObject {
 	
 	func publishNewConcertion(concertion: Concertion) {
 		concertions.append(concertion)
-		// do insertion
+		
+		concertion.changedLocallyListener = {
+			[unowned self]
+			Void -> Void in
+			self.pushConcertionChanges(concertion)
+		}
+		
+		println("Sending consertion")
+		self.meteor.callMethodName(
+			"/concertions/insert",
+			parameters:[concertion.serialized()],
+			responseCallback:{
+				(response: [NSObject: AnyObject]!, error: NSError!) -> Void in
+				println("insert response: \(response) \(error)")
+			}
+		)
 	}
 	
 	func pushConcertionChanges(concertion: Concertion) {
-	
+		println("Updating consertion")
+		var params : [AnyObject] = [NSDictionary(dictionary: [
+			"_id": concertion.identifier!
+		]), NSDictionary(dictionary:[
+			"$set": concertion.serialized()
+		])]
+		self.meteor.callMethodName(
+			"/concertions/update",
+			parameters:params,
+			responseCallback:{
+				(response: [NSObject: AnyObject]!, error: NSError!) -> Void in
+				println("update response: \(response) \(error)")
+			}
+		)
 	}
 }
 
