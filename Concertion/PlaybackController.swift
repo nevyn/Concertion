@@ -97,6 +97,10 @@ public class PlaybackController: NSObject, STKAudioPlayerDelegate {
 	{
 		super.init()
 		player.delegate = self
+
+		let session = AVAudioSession.sharedInstance()
+		session.setCategory(AVAudioSessionCategoryPlayAndRecord, error: nil)
+		session.setActive(true, error: nil)
 	}
 	
 	
