@@ -13,11 +13,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	var window: UIWindow?
 	var service = ConcertionService()
-    var mumble = CCMumble()
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		// Override point for customization after application launch.
-        mumble.connectToHost("voxify.local")
+        CCMumble.sharedInstance().connectToHost("voxify.local")
 		return true
 	}
     

@@ -72,8 +72,14 @@ public class PlaybackController: NSObject {
 	
 	public private(set) var currentConcertion : Concertion!
 	
+    
+    public func startConcertion(track: Track) -> Void {
+        CCMumble.sharedInstance().joinEmptyChannel()
+        
+        self.play(track)
+    }
 	
-	public func play(track: Track) {
+	private func play(track: Track) {
 		player.play(track.streamingURL.absoluteString)
 		
 		if currentConcertion == nil {
@@ -88,6 +94,8 @@ public class PlaybackController: NSObject {
 	}
 	
 	public func joinConcertion(concertion: Concertion?) {
+        CCMumble.sharedInstance().joinOtherPlayer()
+        
 		self.currentConcertion?.changedRemotelyListener = nil
 		self.currentConcertion = concertion
 		self.currentConcertion?.changedRemotelyListener = {

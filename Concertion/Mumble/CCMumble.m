@@ -79,6 +79,7 @@ static CCMumble *g_sharedMumble = nil;
 {
     for (MKChannel *channel in [self flatChildren:self.serverModel.rootChannel]) {
         if (channel.users.count > 0) {
+            NSLog(@"Joining channel %@", channel.channelName);
             [self.serverModel joinChannel:channel];
             break;
         }
@@ -89,6 +90,7 @@ static CCMumble *g_sharedMumble = nil;
 {
     for (MKChannel *channel in [self flatChildren:self.serverModel.rootChannel]) {
         if (channel.users.count == 0) {
+            NSLog(@"Joining channel %@", channel.channelName);
             [self.serverModel joinChannel:channel];
             break;
         }
