@@ -97,16 +97,12 @@ public class PlaybackController: NSObject {
 	public private(set) var currentConcertion : Concertion!
 	
     
-    public func startConcertion(track: Track) -> Void {
-        CCMumble.sharedInstance().joinEmptyChannel()
-        
-        self.play(track)
-    }
-	
-	private func play(track: Track) {
+	public func play(track: Track) {
 		player.play(track.streamingURL.absoluteString)
 		
 		if currentConcertion == nil {
+			CCMumble.sharedInstance().joinEmptyChannel()
+
 			currentConcertion = Concertion()
 			ConcertionService.sharedInstance().publishNewConcertion(currentConcertion)
 		}

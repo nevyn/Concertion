@@ -52,7 +52,7 @@ class SREpisodesInShowCollectionViewController: UICollectionViewController {
             imageURL: episode.imageURL,
             streamingURL: episode.broadcastURL!
         )
-        PlaybackController.sharedInstance().startConcertion(track)
+        PlaybackController.sharedInstance().play(track)
 		self.navigationController?.pushViewController(self.storyboard!.instantiateViewControllerWithIdentifier("concertion")! as UIViewController, animated: true)
     }
 
