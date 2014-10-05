@@ -125,7 +125,11 @@ public class PlaybackController: NSObject, STKAudioPlayerDelegate {
 	}
 	
 	public func joinConcertion(concertion: Concertion?) {
-        CCMumble.sharedInstance().joinOtherPlayer()
+        if concertion != nil {
+            CCMumble.sharedInstance().joinOtherPlayer()
+        } else {
+            CCMumble.sharedInstance().joinChannelNamed("Idle")
+        }
         
 		self.currentConcertion?.changedRemotelyListener = nil
 		self.currentConcertion = concertion
