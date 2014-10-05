@@ -10,4 +10,13 @@
 
 @interface CCMumble : NSObject
 
++ (instancetype)sharedInstance;
+
+- (void)connectToHost:(NSString *)host;
+
+- (void)joinChannelNamed:(NSString *)name;
+
+- (void)joinOtherPlayer;
+- (void)joinEmptyChannel;
+
 @end

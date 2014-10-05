@@ -1,38 +1,109 @@
 
 #import "CCMumble.h"
+#import <UIKit/UIKit.h>
 
 #import <MumbleKit/MKConnection.h>
 #import <MumbleKit/MKServerModel.h>
 #import <MumbleKit/MKAudio.h>
+#import <MumbleKit/MKVersion.h>
 
 @interface CCMumble () <MKConnectionDelegate, MKServerModelDelegate>
 @property (nonatomic, strong) MKConnection *connection;
 @property (nonatomic, strong) MKServerModel *serverModel;
 @end
 
+static CCMumble *g_sharedMumble = nil;
+
 @implementation CCMumble
 
-- (instancetype)init
++ (instancetype)sharedInstance
 {
-    self = [super init];
-    if (self) {
-        MKAudioSettings settings;
-        [[MKAudio sharedAudio] readAudioSettings:&settings];
-        settings.transmitType = MKTransmitTypeContinuous;
-        [[MKAudio sharedAudio] updateAudioSettings:&settings];
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        g_sharedMumble = [[CCMumble alloc] init];
+    });
+
+    return g_sharedMumble;
+}
+
+- (void)connectToHost:(NSString *)host;
+{
+    MKAudioSettings settings;
+    [[MKAudio sharedAudio] readAudioSettings:&settings];
+    settings.transmitType = MKTransmitTypeContinuous;
+    [[MKAudio sharedAudio] updateAudioSettings:&settings];
+    
+    [[MKAudio sharedAudio] start];
+    
+    self.connection = [MKConnection new];
+    self.connection.delegate = self;
+
+    self.serverModel = [[MKServerModel alloc] initWithConnection:self.connection];
+    [self.serverModel addDelegate:self];
+    
+    [self.connection setIgnoreSSLVerification:YES];
+    [self.connection connectToHost:host port:64738];
+}
+
+- (MKChannel *)findChannelNamed:(NSString *)name amongst:(NSArray *)channels
+{
+    for (MKChannel *channel in channels) {
+        if ([channel.channelName isEqualToString:name]) {
+            return channel;
+        }
         
-        [[MKAudio sharedAudio] start];
-        
-        self.connection = [MKConnection new];
-        self.connection.delegate = self;
-        
-        self.serverModel = [[MKServerModel alloc] initWithConnection:self.connection];
-        [self.serverModel addDelegate:self];
-        
-        [self.connection setIgnoreSSLVerification:YES];
-        [self.connection connectToHost:@"voxify.local" port:64738];
+        MKChannel *foundChannel = [self findChannelNamed:name amongst:channel.channels];
+        if (foundChannel) {
+            return foundChannel;
+        }
     }
-    return self;
+    
+    return nil;
+}
+
+- (NSArray *)flatChildren:(MKChannel *)parent
+{
+    NSMutableArray *channels = [NSMutableArray new];
+    for (MKChannel *channel in parent.channels) {
+        if ([channel.channelName isEqual:@"Idle"]) {
+            // Idle is an empty channel
+            continue;
+        }
+        [channels addObject:channel];
+        [channels addObjectsFromArray:[self flatChildren:channel]];
+    }
+    return channels;
+}
+
+- (void)joinOtherPlayer
+{
+    for (MKChannel *channel in [self flatChildren:self.serverModel.rootChannel]) {
+        if (channel.users.count > 0) {
+            [self.serverModel joinChannel:channel];
+            break;
+        }
+    }
+}
+
+- (void)joinEmptyChannel
+{
+    for (MKChannel *channel in [self flatChildren:self.serverModel.rootChannel]) {
+        if (channel.users.count == 0) {
+            [self.serverModel joinChannel:channel];
+            break;
+        }
+    }
+}
+
+- (void)joinChannelNamed:(NSString *)name
+{
+    MKChannel *channel = [self findChannelNamed:name amongst:self.serverModel.rootChannel.channels];
+
+    if (channel) {
+        [self.serverModel joinChannel:channel];
+    } else {
+        NSLog(@"Didn't find a channel named '%@'", name);
+    }
 }
 
 
@@ -58,8 +129,7 @@
 ///// @param msg    The welcome message presented by the server.
 - (void) serverModel:(MKServerModel *)model joinedServerAsUser:(MKUser *)user withWelcomeMessage:(MKTextMessage *)msg;
 {
-
-    [self.serverModel createChannelWithName:@"Mine!" parent:model.rootChannel temporary:NO];
+    [self joinChannelNamed:@"Idle"];
 }
 //
 ///// Called when disconnected from the server (forcefully or not).
@@ -103,7 +173,11 @@
 ///// @param chan   The channel to which user was moved to.
 ///// @param mover  The user that performed the user move. If the move was
 /////               performed by the server, mover is nil.
-//- (void) serverModel:(MKServerModel *)model userMoved:(MKUser *)user toChannel:(MKChannel *)chan byUser:(MKUser *)mover;
+- (void) serverModel:(MKServerModel *)model userMoved:(MKUser *)user toChannel:(MKChannel *)chan byUser:(MKUser *)mover
+{
+//    [model requestAccessControlForChannel:chan];
+    [self.serverModel createChannelWithName:@"Mine" parent:chan temporary:YES];
+}
 //
 ///// Called when a user is moved to another channel.
 ///// This is also called when a user changes the channel he resides in (in which
@@ -456,7 +530,10 @@
 ///// @param  model            The MKServerModel in which this event originated.
 ///// @param  accessControl    The requested access control.
 ///// @param  channel          The channel to which access control refers.
-//- (void) serverModel:(MKServerModel *)model didReceiveAccessControl:(MKAccessControl *)accessControl forChannel:(MKChannel *)channel;
+- (void) serverModel:(MKServerModel *)model didReceiveAccessControl:(MKAccessControl *)accessControl forChannel:(MKChannel *)channel
+{
+    NSLog(@"ACL %@ %@", NSStringFromSelector(_cmd), accessControl);
+}
 
 
 
@@ -470,7 +547,7 @@
 /// @param conn  The connection that was opened.
 - (void) connectionOpened:(MKConnection *)conn
 {
-    [conn authenticateWithUsername:[self randomUsername] password:@"" accessTokens:nil];
+    [conn authenticateWithUsername:[self randomUsername] password:nil accessTokens:nil];
     NSLog(@"%@", NSStringFromSelector(_cmd));
 }
 
@@ -489,6 +566,8 @@
 - (void) connection:(MKConnection *)conn unableToConnectWithError:(NSError *)err
 {
     NSLog(@"%@", NSStringFromSelector(_cmd));
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Mumble" message:@"Connection error" delegate:nil cancelButtonTitle:@"Dismiss" otherButtonTitles:nil];
+    [alert show];
 }
 
 /// This method is called whenever the connection is closed, be it by an error, or by
@@ -503,7 +582,8 @@
 /// @param err   The error that caused the disconnection. (Nil if not caused by an error)
 - (void) connection:(MKConnection *)conn closedWithError:(NSError *)err
 {
-    NSLog(@"%@", NSStringFromSelector(_cmd));
+    NSLog(@"%@ %@", NSStringFromSelector(_cmd), err);
+    [conn reconnect];
 }
 
 /// This method is called if the MKConnection could not verify the TLS certificate chain
