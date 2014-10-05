@@ -102,9 +102,9 @@ public class PlaybackController: NSObject {
 		
 		if currentConcertion == nil {
 			CCMumble.sharedInstance().joinEmptyChannel()
-
+			println("Creating concertion!")
 			currentConcertion = Concertion()
-			ConcertionService.sharedInstance().publishNewConcertion(currentConcertion)
+			ConcertionService.sharedInstance().registerNewConcertion(currentConcertion)
 		}
 		
 		self.currentConcertion.currentTrack = track
@@ -123,6 +123,7 @@ public class PlaybackController: NSObject {
 			(Void) -> Void in
 			self.updateFromConcertion()
 		}
+		println("Now in concertion \(concertion)")
 		self.updateFromConcertion()
 	}
 	
@@ -132,9 +133,11 @@ public class PlaybackController: NSObject {
 	
 	private func updateFromConcertion() {
 		if let track = self.currentConcertion?.currentTrack {
-			player.play(track.streamingURL.absoluteString)
+			println("Updating from concertion: playing \(track.streamingURL) from \(self.currentConcertion.time!.currentOffset())")
 			player.seekToTime(self.currentConcertion.time!.currentOffset())
+			player.play(track.streamingURL.absoluteString)
 		} else {
+			println("Updating from concertion: not playing")
 			self.player.pause()
 		}
 	}

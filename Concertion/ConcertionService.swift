@@ -74,6 +74,8 @@ public class ConcertionService: NSObject {
 				}
 			}
 			
+			println("updating concertion from remote: \(desc)")
+			
 			var track : NSDictionary! = desc["currentTrack"] as? NSDictionary
 			var time : NSDictionary! = desc["time"] as? NSDictionary
 			if [
@@ -99,7 +101,8 @@ public class ConcertionService: NSObject {
 		concertions = newConcertions
 	}
 	
-	func publishNewConcertion(concertion: Concertion) {
+	func registerNewConcertion(concertion: Concertion)
+	{
 		concertions.append(concertion)
 		
 		concertion.changedLocallyListener = {
@@ -107,33 +110,37 @@ public class ConcertionService: NSObject {
 			Void -> Void in
 			self.pushConcertionChanges(concertion)
 		}
-		
-		println("Sending consertion")
-		self.meteor.callMethodName(
-			"/concertions/insert",
-			parameters:[concertion.serialized()],
-			responseCallback:{
-				(response: [NSObject: AnyObject]!, error: NSError!) -> Void in
-				println("insert response: \(response) \(error)")
-			}
-		)
 	}
 	
-	func pushConcertionChanges(concertion: Concertion) {
-		println("Updating consertion")
-		var params : [AnyObject] = [NSDictionary(dictionary: [
-			"_id": concertion.identifier!
-		]), NSDictionary(dictionary:[
-			"$set": concertion.serialized()
-		])]
-		self.meteor.callMethodName(
-			"/concertions/update",
-			parameters:params,
-			responseCallback:{
-				(response: [NSObject: AnyObject]!, error: NSError!) -> Void in
-				println("update response: \(response) \(error)")
-			}
-		)
+	
+	func pushConcertionChanges(concertion: Concertion)
+	{
+		if(concertion.identifier == nil) {
+			println("Inserting consertion")
+			self.meteor.callMethodName(
+				"/concertions/insert",
+				parameters:[concertion.serialized()],
+				responseCallback:{
+					(response: [NSObject: AnyObject]!, error: NSError!) -> Void in
+					println("insert response: \(response) \(error)")
+				}
+			)
+		} else {
+			println("Updating consertion")
+			var params : [AnyObject] = [NSDictionary(dictionary: [
+				"_id": concertion.identifier!
+			]), NSDictionary(dictionary:[
+				"$set": concertion.serialized()
+			])]
+			self.meteor.callMethodName(
+				"/concertions/update",
+				parameters:params,
+				responseCallback:{
+					(response: [NSObject: AnyObject]!, error: NSError!) -> Void in
+					println("update response: \(response) \(error)")
+				}
+			)
+		}
 	}
 }
 
