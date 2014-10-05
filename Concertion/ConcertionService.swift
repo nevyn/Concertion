@@ -21,7 +21,7 @@ public class ConcertionService: NSObject {
 	public override init() {
 		self.meteor = MeteorClient(DDPVersion:"pre2")
 		meteor.addSubscription("concertions")
-		ddp = ObjectiveDDP(URLString:"ws://api.concertion.eu:3000/websocket", delegate:meteor)
+		ddp = ObjectiveDDP(URLString:"ws://172.20.10.7:3000/websocket", delegate:meteor)
 		// local testing
 		//ObjectiveDDP *ddp = [[ObjectiveDDP alloc] initWithURLString:@"ws://localhost:3000/websocket" delegate:self.meteorClient];
 

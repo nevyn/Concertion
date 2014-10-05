@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 	func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 		// Override point for customization after application launch.
-        CCMumble.sharedInstance().connectToHost("voxify.local")
+        CCMumble.sharedInstance().connectToHost("172.20.10.10")
 		return true
 	}
     
