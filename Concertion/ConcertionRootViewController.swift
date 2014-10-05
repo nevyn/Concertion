@@ -17,6 +17,7 @@ class ConcertionRootViewController: UIViewController {
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 		self.navigationController?.setNavigationBarHidden(true, animated: animated)
+		PlaybackController.sharedInstance().joinConcertion(nil)
 	}
 	override func viewWillDisappear(animated: Bool) {
 		super.viewWillDisappear(animated)

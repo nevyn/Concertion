@@ -56,6 +56,7 @@ class ConcertionsCollectionViewController: UICollectionViewController {
 	{
 		let concertion = self.service.concertions[indexPath.row]
 		self.playback.joinConcertion(concertion)
+		self.navigationController?.pushViewController(self.storyboard!.instantiateViewControllerWithIdentifier("concertion")! as UIViewController, animated: true)
 	}
 
     // MARK: UICollectionViewDelegate

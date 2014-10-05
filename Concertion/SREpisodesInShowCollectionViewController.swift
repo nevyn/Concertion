@@ -53,6 +53,7 @@ class SREpisodesInShowCollectionViewController: UICollectionViewController {
             streamingURL: episode.broadcastURL!
         )
         PlaybackController.sharedInstance().play(track)
+		self.navigationController?.pushViewController(self.storyboard!.instantiateViewControllerWithIdentifier("concertion")! as UIViewController, animated: true)
     }
 
     override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {

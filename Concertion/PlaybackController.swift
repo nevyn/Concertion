@@ -87,10 +87,10 @@ public class PlaybackController: NSObject {
 		self.currentConcertion.changedLocallyListener?()
 	}
 	
-	public func joinConcertion(concertion: Concertion) {
+	public func joinConcertion(concertion: Concertion?) {
 		self.currentConcertion?.changedRemotelyListener = nil
 		self.currentConcertion = concertion
-		self.currentConcertion.changedRemotelyListener = {
+		self.currentConcertion?.changedRemotelyListener = {
 			[unowned self]
 			(Void) -> Void in
 			self.updateFromConcertion()
@@ -103,7 +103,7 @@ public class PlaybackController: NSObject {
 	private lazy var obs : FBKVOController = FBKVOController(observer: self, retainObserved: false)
 	
 	private func updateFromConcertion() {
-		if let track = self.currentConcertion.currentTrack {
+		if let track = self.currentConcertion?.currentTrack {
 			player.play(track.streamingURL.absoluteString)
 			player.seekToTime(self.currentConcertion.time!.currentOffset())
 		} else {
