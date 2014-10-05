@@ -103,8 +103,6 @@ public class ConcertionService: NSObject {
 	
 	func registerNewConcertion(concertion: Concertion)
 	{
-		concertions.append(concertion)
-		
 		concertion.changedLocallyListener = {
 			[unowned self]
 			Void -> Void in
@@ -115,7 +113,8 @@ public class ConcertionService: NSObject {
 	
 	func pushConcertionChanges(concertion: Concertion)
 	{
-		if(concertion.identifier == nil) {
+		if(find(concertions, concertion) == nil) {
+			concertions.append(concertion)
 			println("Inserting consertion")
 			self.meteor.callMethodName(
 				"/concertions/insert",

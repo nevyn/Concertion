@@ -134,8 +134,8 @@ public class PlaybackController: NSObject {
 	private func updateFromConcertion() {
 		if let track = self.currentConcertion?.currentTrack {
 			println("Updating from concertion: playing \(track.streamingURL) from \(self.currentConcertion.time!.currentOffset())")
-			player.seekToTime(self.currentConcertion.time!.currentOffset())
 			player.play(track.streamingURL.absoluteString)
+			player.seekToTime(self.currentConcertion.time!.currentOffset())
 		} else {
 			println("Updating from concertion: not playing")
 			self.player.pause()
